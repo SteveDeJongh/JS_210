@@ -21,9 +21,9 @@ if (bananas == apples) {
 
 // 3
 
-if (bannas === apples {
+if (bannas === apples) {
   console.log('Strict Equal!');
-})
+}
 
 // This does not output 'Strict Equal!' as with 3 equals no conversion occurs since a string a string is different from a number they are not strictly equal.
 

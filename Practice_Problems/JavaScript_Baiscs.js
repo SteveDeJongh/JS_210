@@ -2,14 +2,14 @@
 
 // 1
 
-const paragraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed \
-                ligula at risus vulputate faucibus. Aliquam venenatis nibh ut justo dignissim \
-                dignissim. Proin dictum purus mollis diam auctor sollicitudin. Ut in bibendum \
-                ligula. Suspendisse quam ante, dictum aliquam tristique id, porttitor pulvinar \
-                diam. Maecenas blandit aliquet ipsum. Integer vitae sapien sed nulla rutrum \   
-                hendrerit ac a urna. Interdum et malesuada fames ac ante ipsum primis in faucibus.';
+// const paragraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed \
+//                 ligula at risus vulputate faucibus. Aliquam venenatis nibh ut justo dignissim \
+//                 dignissim. Proin dictum purus mollis diam auctor sollicitudin. Ut in bibendum \
+//                 ligula. Suspendisse quam ante, dictum aliquam tristique id, porttitor pulvinar \
+//                 diam. Maecenas blandit aliquet ipsum. Integer vitae sapien sed nulla rutrum \   
+//                 hendrerit ac a urna. Interdum et malesuada fames ac ante ipsum primis in faucibus.';
 
-console.log(paragraph);
+// console.log(paragraph);
 
 // Solution
 // The program does not run. There are bugs/errors.
@@ -73,10 +73,10 @@ const saveName = myName;
 myName = 'Alice';
 console.log(myName, saveName); // Alive Bob
 
-const myName = 'Bob';
-const saveName = myName;
-myName.toUpperCase();
-console.log(myName, saveName); // Bob Bob
+// const myName = 'Bob';
+// const saveName = myName;
+// myName.toUpperCase();
+// console.log(myName, saveName); // Bob Bob
 
 // If you were thinking that at least one or both of the names should be in uppercase, then you would be wrong. Don't worry though, you're not alone—especially if you come from other programming languages in which strings are mutable. In JavaScript however, primitive strings—such as the ones shown above—are immutable.
 
