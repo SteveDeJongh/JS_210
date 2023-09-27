@@ -62,3 +62,108 @@ logMultiples(17);
 
 // FizzBuzz
 
+function fizzBuzz() {
+  for (let num = 1; num <= 100; num += 1) {
+    if (num % 3 === 0 && num % 5 === 0) {
+      console.log('FizzBuzz');
+    } else if (num % 3 === 0) {
+      console.log('Fizz');
+    } else if (num % 5 === 0) {
+      console.log('Buzz');
+    } else {
+      console.log(num);
+    }
+  }
+}
+
+fizzBuzz();
+
+// Another option using an arrow function and a single call to console.log with a varialbe for the message.
+
+let fizzbuzz = () => {
+  for (let index = 1; index <= 100; index += 1) {
+    let message = index;
+
+    if (index % 3 === 0 && index % 5 === 0) {
+      message = 'FizzBuzz';
+    } else if (index % 3 === 0) {
+      message = 'Fizz';
+    } else if (index % 5 === 0) {
+      message = 'Buzz';
+    }
+
+    console.log(message);
+  }
+};
+
+// Another option
+
+let fizzbuzz = () => {
+  for (let index = 1; index <= 100; index += 1) {
+    let message = '';
+
+    if (index % 3 === 0) {
+      message += 'Fizz';
+    }
+
+    if (index % 5 === 0) {
+      message += 'Buzz';
+    }
+
+    console.log(message || index);
+  }
+};
+
+// Prime Check
+
+function isPrime(num) {
+  let status = false
+  if (num > 1) status = true
+  counter = 2
+  while (status && counter < (num -1)) {
+    if (num % counter === 0) status = false 
+    counter += 1
+  }
+  return status
+}
+
+isPrime(5);
+
+// Or
+
+function isPrime(number) {
+  if (number <= 1) {
+    return false;
+  }
+
+  for (let currentNumber = 2; currentNumber < number; currentNumber += 1) {
+    if (number % currentNumber === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// If we use the fact that even numbers greater than 2 can't be prime (they're all divisible by 2), we can add this to the guard clause as well, and return immediately for even numbers greater than 2. This also means that we only need to test odd divisors; odd numbers are never divisible by even numbers.
+
+function isPrime(number) {
+  if (number <= 1 || (number > 2 && number % 2 === 0)) {
+    return false;
+  }
+
+  let divisor = 3;
+
+  while (divisor < number) {
+    if (number % divisor === 0) {
+      return false;
+    }
+
+    divisor += 2;
+  }
+
+  return true;
+}
+
+// XOR
+
