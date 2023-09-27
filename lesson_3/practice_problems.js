@@ -38,3 +38,27 @@ logOddNumbers(19);
 
 // Multiples of 3 and 5
 
+function multiplesOfThreeAndFive() {
+  for (let curr = 1; curr < 100; curr += 1) {
+    if (curr % 3 === 0 && curr % 5 === 0) {
+      console.log(String(curr) + '!');
+    } else if (curr % 3 == 0 || curr % 5 === 0) {
+      console.log(String(curr));
+    }
+  }
+}
+
+multiplesOfThreeAndFive();
+
+// Print Multiples
+
+function logMultiples(num) {
+  for (let start = 100; start >= num; start -= 1) {
+    if (start % num === 0 && start % 2 != 0) console.log(start);
+  }
+}
+
+logMultiples(17);
+
+// FizzBuzz
+
