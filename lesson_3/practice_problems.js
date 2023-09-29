@@ -244,3 +244,65 @@ while (true) {
     break;
   }
 }
+
+// Student Grade
+
+// 90 + = A
+// 70-89 = B
+// 50-69 = C
+// 49... = Fail
+
+function determineGrade() {
+  let grades = []
+  for (let count = 1; count < 4; count += 1) {
+    grades.push(parseInt(prompt('Enter score ' + String(count) + ':')))
+  }
+
+  let sum = 0
+
+  for (grade in grades) {
+    sum += grades[grade]
+  }
+
+  let avg = sum / 3
+
+  if (avg >= 90) {
+    console.log('Based on the average of your 3 scores your letter grade is A.');
+  }
+
+  if (avg >= 70 && avg < 90) {
+    console.log('Based on the average of your 3 scores your letter grade is B.');
+  }
+
+  if (avg >= 50 && avg < 70) {
+    console.log('Based on the average of your 3 scores your letter grade is C.');
+  }
+
+  if (avg < 50) {
+    console.log('Based on the average of your 3 scores your letter grade is a Fail.');
+  }
+}
+
+determineGrade();
+
+// Example solution:
+
+let score1 = Number(prompt('Enter score 1:'));
+let score2 = Number(prompt('Enter score 2:'));
+let score3 = Number(prompt('Enter score 3:'));
+let total = score1 + score2 + score3;
+let average = total / 3;
+
+let grade;
+if (average >= 90) {
+  grade = 'A';
+} else if (average >= 70 && average < 90) {
+  grade = 'B';
+} else if (average >= 50 && average < 70) {
+  grade = 'C';
+} else {
+  grade = 'F';
+}
+
+console.log('Based on the average of your 3 scores your letter grade is "' +
+            grade + '".');
