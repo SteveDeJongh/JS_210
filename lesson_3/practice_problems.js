@@ -167,3 +167,80 @@ function isPrime(number) {
 
 // XOR
 
+function isXor(arg1, arg2) {
+  let arr1 = []
+  arr1[0] = (arg1) ? true : false
+  arr1[1] = (arg2) ? true : false
+
+  let counter = 0;
+  for (test of arr1) {
+    if (test == true) {
+          counter++;
+      }
+  };
+
+  return (counter === 1) ? true : false
+}
+
+// Or... much simpler.
+
+function isXor(value1, value2) {
+  if (value1 && !value2) {
+    return true;
+  }
+
+  if (!value1 && value2) {
+    return true;
+  }
+
+  return false;
+}
+
+// More concise, forcing the return of a boolean
+
+function isXor(value1, value2) {
+  return !!((value1 && !value2) || (value2 && !value1));
+}
+
+// Guess the password
+
+let password = 'password'
+
+function guessThePassword() {
+  let count = 0
+  while (count < 3) {
+    let guess = prompt('Please enter your password')
+    count++;
+    if (password === guess) {
+      count = 0
+      console.log('Log in successful')
+      break;
+    }
+  }
+  if (count === 3) {
+    console.log('Log in failed, access denied.')
+  }
+}
+
+guessThePassword();
+
+// Cleaner, only counting failed attempts
+
+const PASSWORD = 'password';
+let failedAttempts = 0;
+
+while (true) {
+  let guess = prompt('What is the password:');
+
+  if (guess === PASSWORD) {
+    console.log('You have successfully logged in.');
+    break;
+  }
+
+  failedAttempts += 1;
+
+  if (failedAttempts === 3) {
+    console.log('You have been denied access.');
+    break;
+  }
+}
