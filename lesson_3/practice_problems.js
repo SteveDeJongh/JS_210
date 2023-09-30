@@ -268,17 +268,11 @@ function determineGrade() {
 
   if (avg >= 90) {
     console.log('Based on the average of your 3 scores your letter grade is A.');
-  }
-
-  if (avg >= 70 && avg < 90) {
+  } else if (avg >= 70) {
     console.log('Based on the average of your 3 scores your letter grade is B.');
-  }
-
-  if (avg >= 50 && avg < 70) {
+  } else if (avg >= 50) {
     console.log('Based on the average of your 3 scores your letter grade is C.');
-  }
-
-  if (avg < 50) {
+  } else {
     console.log('Based on the average of your 3 scores your letter grade is a Fail.');
   }
 }
@@ -306,3 +300,46 @@ if (average >= 90) {
 
 console.log('Based on the average of your 3 scores your letter grade is "' +
             grade + '".');
+
+// FE, accept any number of scores.
+
+function returnAverage(scores) {
+  let sum = 0
+  let count = 0
+
+  for (score in scores) {
+    sum += scores[score]
+    count++;
+  }
+
+  return sum / count
+}
+
+// Greatest Common Divisor
+
+function gcd(n1, n2) {
+  let divisor;
+
+  for (let idx = n2; divisor === undefined; idx--) {
+    if (n1 % idx === 0 && n2 % idx === 0) {
+      divisor = idx
+    }
+  }
+  return divisor
+}
+
+gcd(12, 4);
+
+// More efficient
+
+function gcd(num1, num2) {
+  var temp;
+
+  while (num2 !== 0) {
+    temp = num2;
+    num2 = num1 % num2;
+    num1 = temp;
+  }
+
+  return num1;
+}
