@@ -419,7 +419,7 @@ function generatePattern(num) {
   let stars = '*'.repeat(num)
   for(let row = 1; row <= num; row += 1) {
     debugger;
-    numbers += String(row))
+    numbers += String(row)
     stars = stars.slice(0,-1)
     console.log(numbers + stars)
   }
@@ -444,3 +444,31 @@ function generatePattern(nStars) {
     console.log(string);
   }
 }
+
+// FE, being able to accept numbers greater than 10.
+
+function generatePattern(nStars) {
+  let lastRowString = '';
+
+  for (let lineNumber = 1; lineNumber <= nStars; lineNumber += 1) {
+    lastRowString += String(lineNumber);
+  }
+
+  let width = lastRowString.length;
+
+  for (let lineNumber = 1; lineNumber <= nStars; lineNumber += 1) {
+    let string = '';
+    for (let digit = 1; digit <= lineNumber; digit += 1) {
+      string += String(digit);
+    }
+
+    let numberOfStars = width - string.length;
+    for (let count = 1; count <= numberOfStars; count += 1) {
+      string += '*';
+    }
+
+    console.log(string);
+  }
+}
+
+generatePattern(20);
