@@ -412,3 +412,35 @@ let checkGoldbach = function(expectedSum) {
   } while (num1 !== num2);
 };
 
+// Pattern Generation
+
+function generatePattern(num) {
+  let numbers = ''
+  let stars = '*'.repeat(num)
+  for(let row = 1; row <= num; row += 1) {
+    debugger;
+    numbers += String(row))
+    stars = stars.slice(0,-1)
+    console.log(numbers + stars)
+  }
+}
+
+generatePattern(3);
+
+// Or 
+
+function generatePattern(nStars) {
+  for (let lineNumber = 1; lineNumber <= nStars; lineNumber += 1) {
+    let string = '';
+
+    for (let digit = 1; digit <= lineNumber; digit += 1) {
+      string += String(digit);
+    }
+
+    for (let count = lineNumber + 1; count <= nStars; count += 1) {
+      string += '*';
+    }
+
+    console.log(string);
+  }
+}
