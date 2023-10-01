@@ -343,3 +343,72 @@ function gcd(num1, num2) {
 
   return num1;
 }
+
+// Goldbach Numbers
+
+function isPrime(number) {
+  if (number <= 1) {
+    return false;
+  }
+
+  for (let currentNumber = 2; currentNumber < number; currentNumber += 1) {
+    if (number % currentNumber === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function checkGoldback(expectedSum) {
+  if (expectedSum % 2 != 0 || expectedSum < 4) {
+    console.log(null)
+    return
+  }
+  else {
+    for (let firstNumber = 2; firstNumber <= expectedSum / 2; firstNumber += 1) {
+      let secondNumber = expectedSum - firstNumber
+      if (isPrime(firstNumber) && isPrime(secondNumber)) {
+        console.log(firstNumber + ' ' + secondNumber)
+      }
+    }
+  }
+}
+
+checkGoldback(4);
+
+// Alternatively
+
+let isPrime = function(number) {
+  if (number < 2) {
+    return false;
+  }
+
+  for (let firstNumber = 2; firstNumber < number; firstNumber += 1) {
+    if (number % firstNumber === 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+let checkGoldbach = function(expectedSum) {
+  if (expectedSum < 4 || expectedSum % 2 === 1) {
+    console.log(null);
+    return;
+  }
+
+  let num1 = 1;
+  let num2;
+
+  do {
+    num1 += 1;
+    num2 = expectedSum - num1;
+    if (isPrime(num1) && isPrime(num2)) {
+      console.log(num1, num2);
+    }
+
+  } while (num1 !== num2);
+};
+
