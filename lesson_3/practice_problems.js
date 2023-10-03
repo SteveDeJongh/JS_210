@@ -458,6 +458,7 @@ function generatePattern(nStars) {
 
   for (let lineNumber = 1; lineNumber <= nStars; lineNumber += 1) {
     let string = '';
+    debugger;
     for (let digit = 1; digit <= lineNumber; digit += 1) {
       string += String(digit);
     }
@@ -472,3 +473,50 @@ function generatePattern(nStars) {
 }
 
 generatePattern(20);
+
+// Index of Substring
+
+function indexOf(firstString, secondString) {
+  let length = secondString.length;
+  let l1 = firstString.length;
+  let index = -1;
+
+  for (let start = 0; start <= (l1 - length); start += 1) {
+    let testString = '';
+    for (let idx = start; idx < (start + length); idx += 1) {
+      testString += firstString[idx];
+    }
+    if (secondString === testString) {
+      index = start;
+    }
+    if (index != -1) break
+  }
+  return index;
+}
+
+function lastIndexOf(firstString, secondString) {
+  // let length = secondString.length;
+  // let l1 = firstString.length;
+  // let index = -1;
+
+  // for (let start = length; start >= (l1 - length); start -= 1) {
+  //   let testString = '';
+  //   for (let idx = start; idx < (start + length); idx += 1) {
+  //     testString += firstString[idx];
+  //   }
+  //   if (secondString === testString) {
+  //     index = start;
+  //   }
+  //   if (index != -1) break
+  // }
+  // return index;
+}
+
+indexOf('Some strings', 's');                      // 5
+indexOf('Blue Whale', 'Whale');                    // 5
+indexOf('Blue Whale', 'Blute');                    // -1
+indexOf('Blue Whale', 'leB');                      // -1
+
+lastIndexOf('Some strings', 's');                  // 11
+lastIndexOf('Blue Whale, Killer Whale', 'Whale');  // 19
+lastIndexOf('Blue Whale, Killer Whale', 'all');    // -1
