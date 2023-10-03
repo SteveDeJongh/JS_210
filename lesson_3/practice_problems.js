@@ -717,3 +717,79 @@ function splitString(string, delimiter) {
     console.log(tempString);
   }
 }
+
+// The built in method
+
+let str = 'We put comprehension and mastery above all else';
+
+str.split(' ');     // ["We", "put", "comprehension", "and", "mastery", "above", "all", "else"]
+str.split('and');   // ["We put comprehension ", " mastery above all else"]
+
+'hello'.split('');  // ["h", "e", "l", "l", "o"]
+
+// Repeating Strings
+
+function repeat(string, times) {
+  if (times < 0 || !Number.isInteger(times)) {
+    return undefined;
+  }
+
+  let restring = ''
+
+  for (let i = 0; i < times; i++) {
+    restring += string;
+  }
+
+  return restring;
+}
+
+repeat('abc', 1);       // "abc"
+repeat('abc', 2);       // "abcabc"
+repeat('abc', -1);      // undefined
+repeat('abc', 0);       // ""
+repeat('abc', 'a');     // undefined
+repeat('abc', false);   // undefined
+repeat('abc', null);    // undefined
+repeat('abc', '  ');    // undefined
+
+// Alt solution, seperating logic of checking for positive integer value for times.
+
+const isCount = value => Number.isInteger(value) && value >= 0;
+
+function repeat(string, times) {
+  if (!isCount(times)) {
+    return undefined;
+  }
+
+  let repeated = '';
+  for (let counter = 0; counter < times; counter += 1) {
+    repeated += string;
+  }
+
+  return repeated;
+}
+
+// The built in repeat method
+
+// String.prototype.repeat(times);
+// 'abcd'.repeat(times);
+
+'abcd'.repeat(3);      // "abcdabcdabcd"
+'abcd'.repeat('a');    // ""
+'abcd'.repeat(1.6);    // "abcd"
+'abcd'.repeat(1/0);    // RangeError
+
+// String StartsWith
+
+function startsWith(string, searchString) {
+  // …
+}
+
+let str = 'We put comprehension and mastery above all else';
+startsWith(str, 'We');              // true
+startsWith(str, 'We put');          // true
+startsWith(str, '');                // true
+startsWith(str, 'put');             // false
+
+let longerString = 'We put comprehension and mastery above all else!';
+startsWith(str, longerString);      // false
