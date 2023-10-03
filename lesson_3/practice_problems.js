@@ -656,4 +656,64 @@ function trimRight(string) {
 let original = '   foo  ';
 original.trim();            // "foo"
 
-// 
+// Splitting a String
+
+function splitString(string, delimiter) {
+  if (delimiter === undefined) {
+    console.log('ERROR: No delimiter');
+    return;
+  }
+
+  let returnStrings = [];
+  let workingString = ''
+
+  for (let i = 0; i < string.length; i += 1) {
+    if (string[i] === delimiter) {
+      returnStrings.push(workingString);
+      workingString = '';
+    } else if (delimiter === '') {
+      returnStrings += string[i];
+    } else if (i === string.length - 1) {
+      workingString += string[i];
+      returnStrings.push(workingString);
+    } else {
+      workingString += string[i];
+    }
+  }
+
+  if (returnStrings.size === 0) {
+    console.log(string);
+  } else {
+    for (i in returnStrings) {
+      console.log(returnStrings[i]);
+    }
+  }
+}
+
+splitString('abc,123,hello world', ',');
+splitString('abc.12');
+
+// Alt solution
+
+function splitString(string, delimiter) {
+  if (delimiter === undefined) {
+    console.log('ERROR: No delimiter');
+    return;
+  }
+
+  let tempString = '';
+  for (let index = 0; index < string.length; index += 1) {
+    if (string[index] === delimiter) {
+      console.log(tempString);
+      tempString = '';
+    } else if (delimiter === '') {
+      console.log(string[index]);
+    } else {
+      tempString += string[index];
+    }
+  }
+
+  if (tempString) {
+    console.log(tempString);
+  }
+}
