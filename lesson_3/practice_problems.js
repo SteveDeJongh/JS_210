@@ -578,3 +578,82 @@ function lastIndexOf(firstString, secondString) {
 
 'canal'.lastIndexOf('a');         // returns  3
 'canal'.lastIndexOf('x');         // returns -1
+
+// Trimming Spaces
+
+function trim(input) {
+  let start;
+  let end;
+
+  for (let i = 0; i < input.length; i += 1) {
+    if (input[i] != ' ') {
+      start = i;
+      break
+    }
+  }
+
+  for (let i = (input.length - 1); i > 0; i -= 1) {
+    if (input[i] != ' ') {
+      end = i + 1;
+      break
+    }
+  }
+
+  if (start == undefined && end == undefined) {
+    return input;
+  }
+
+  return input.slice(start, end)
+}
+
+trim('   ');
+
+// Alternative approach, rebuilding a string but only copying over values when 'copyMode' is true, which occurs at the first occurance of a non space character.
+
+function trim(string) {
+  let trimmed = trimLeft(string);
+  trimmed = trimRight(trimmed);
+
+  return trimmed;
+}
+
+function trimLeft(string) {
+  let newString = '';
+  let copyMode = false;
+
+  for (let index = 0; index < string.length; index += 1) {
+    if (string[index] !== ' ') {
+      copyMode = true;
+    }
+
+    if (copyMode) {
+      newString += string[index];
+    }
+  }
+
+  return newString;
+}
+
+function trimRight(string) {
+  let newString = '';
+  let copyMode = false;
+
+  for (let index = string.length - 1; index >= 0; index -= 1) {
+    if (string[index] !== ' ') {
+      copyMode = true;
+    }
+
+    if (copyMode) {
+      newString = string[index] + newString;
+    }
+  }
+
+  return newString;
+}
+
+// The built in method. The built in `trim` method will not only trim space characters, but also newline and any whitespace character.
+
+let original = '   foo  ';
+original.trim();            // "foo"
+
+// 
