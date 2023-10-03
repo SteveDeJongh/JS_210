@@ -495,22 +495,25 @@ function indexOf(firstString, secondString) {
 }
 
 function lastIndexOf(firstString, secondString) {
-  // let length = secondString.length;
-  // let l1 = firstString.length;
-  // let index = -1;
+  let length = secondString.length;
+  let l1 = firstString.length;
+  let index = -1;
 
-  // for (let start = length; start >= (l1 - length); start -= 1) {
-  //   let testString = '';
-  //   for (let idx = start; idx < (start + length); idx += 1) {
-  //     testString += firstString[idx];
-  //   }
-  //   if (secondString === testString) {
-  //     index = start;
-  //   }
-  //   if (index != -1) break
-  // }
-  // return index;
+  for (let start = l1; start > 0; start -= 1) {
+    let testString = '';
+    debugger;
+    for (let idx = (start - 1); idx <= (l1 - 1); idx += 1) {
+      testString += firstString[idx];
+    }
+    if (secondString === testString) {
+      index = start - 1;
+    }
+    if (index != -1) break
+  }
+  return index;
 }
+
+lastIndexOf('Some strings', 's'); 
 
 indexOf('Some strings', 's');                      // 5
 indexOf('Blue Whale', 'Whale');                    // 5
@@ -520,3 +523,58 @@ indexOf('Blue Whale', 'leB');                      // -1
 lastIndexOf('Some strings', 's');                  // 11
 lastIndexOf('Blue Whale, Killer Whale', 'Whale');  // 19
 lastIndexOf('Blue Whale, Killer Whale', 'all');    // -1
+
+// Alternate solution, rather than building the string.
+
+function indexOf(firstString, secondString) {
+  let limit = firstString.length - secondString.length;
+
+  for (let indexFirst = 0; indexFirst <= limit; indexFirst += 1) {
+    let matchCount = 0;
+
+    for (let indexSecond = 0; indexSecond < secondString.length; indexSecond += 1) {
+      if (firstString[indexFirst + indexSecond] === secondString[indexSecond]) {
+        matchCount += 1;
+      } else {
+        break;
+      }
+    }
+
+    if (matchCount === secondString.length) {
+      return indexFirst;
+    }
+  }
+
+  return -1;
+}
+
+function lastIndexOf(firstString, secondString) {
+  let limit = firstString.length - secondString.length;
+
+  for (let indexFirst = limit; indexFirst >= 0; indexFirst -= 1) {
+    let matchCount = 0;
+
+    for (let indexSecond = 0; indexSecond < secondString.length; indexSecond += 1) {
+      if (firstString[indexFirst + indexSecond] === secondString[indexSecond]) {
+        matchCount += 1;
+      } else {
+        break;
+      }
+    }
+
+    if (matchCount === secondString.length) {
+      return indexFirst;
+    }
+  }
+
+  return -1;
+}
+
+// The built in method...
+
+'Blue Whale'.indexOf('Blue');     // returns  0
+'Blue Whale'.indexOf('Blute');    // returns -1
+'Blue Whale'.indexOf('Whale');    // returns  5
+
+'canal'.lastIndexOf('a');         // returns  3
+'canal'.lastIndexOf('x');         // returns -1
