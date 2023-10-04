@@ -782,7 +782,22 @@ function repeat(string, times) {
 // String StartsWith
 
 function startsWith(string, searchString) {
-  // …
+  let times = searchString.length
+  let res = true;
+
+  if (searchString === '') {
+    return true;
+  }
+
+  for (i = 0; i < times; i++) {
+    if (string[i] === searchString[i]) {
+      res = true;
+    } else {
+      res = false;
+    }
+  }
+
+  return res;
 }
 
 let str = 'We put comprehension and mastery above all else';
@@ -793,3 +808,46 @@ startsWith(str, 'put');             // false
 
 let longerString = 'We put comprehension and mastery above all else!';
 startsWith(str, longerString);      // false
+
+// LS Solution
+
+function startsWith(string, searchString) {
+  for (let index = 0; index < searchString.length; index += 1) {
+    if (string[index] !== searchString[index]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// The built in method
+
+let str = 'We put comprehension and mastery above all else';
+
+str.startsWith('We');       // true
+str.startsWith('We put');   // true
+str.startsWith('put');      // false
+str.startsWith('Put');      // false
+str.startsWith('put', 3);   // true
+
+// To Lower Case
+
+function toLowerCase(string) {
+  let resString = '';
+
+  for (let i = 0; i < string.length; i++) {
+    let code = string.charCodeAt(i);
+    if (code >= 65 && code <= 90) {
+      resString += String.fromCharCode(code + 32);
+    } else {
+      resString += string[i];
+    }
+  }
+
+  return resString;
+}
+
+toLowerCase('ALPHABET');    // "alphabet"
+toLowerCase('123');         // "123"
+toLowerCase('abcDEF');      // "abcdef"
