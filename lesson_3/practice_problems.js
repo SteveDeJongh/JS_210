@@ -834,12 +834,13 @@ str.startsWith('put', 3);   // true
 // To Lower Case
 
 function toLowerCase(string) {
+  const CONVERSION_OFFSET = 32;
   let resString = '';
 
   for (let i = 0; i < string.length; i++) {
     let code = string.charCodeAt(i);
     if (code >= 65 && code <= 90) {
-      resString += String.fromCharCode(code + 32);
+      resString += String.fromCharCode(code + CONVERSION_OFFSET);
     } else {
       resString += string[i];
     }
@@ -851,3 +852,41 @@ function toLowerCase(string) {
 toLowerCase('ALPHABET');    // "alphabet"
 toLowerCase('123');         // "123"
 toLowerCase('abcDEF');      // "abcdef"
+
+// LS Solution
+
+function toLowerCase(string) {
+  const CONVERSION_OFFSET = 32;
+  let newString = '';
+
+  for (let index = 0; index < string.length; index += 1) {
+    let charCode = string.charCodeAt(index);
+
+    if (string[index] >= 'A' && string[index] <= 'Z') {
+      charCode += CONVERSION_OFFSET;
+    }
+
+    newString += String.fromCharCode(charCode);
+  }
+
+  return newString;
+}
+
+// The built in methods
+
+'miXedCase1Word'.toLowerCase();    // returns "mixedcase1word"
+'miXedCase1Word'.toUpperCase();    // returns "MIXEDCASE1WORD"
+
+// Substring(1)
+
+function substr(string, start, length) {
+  // …
+}
+
+let string = 'hello world';
+
+substr(string, 2, 4);      // "llo "
+substr(string, -3, 2);     // "rl"
+substr(string, 8, 20);     // "rld"
+substr(string, 0, -20);    // ""
+substr(string, 0, 0);      // ""
