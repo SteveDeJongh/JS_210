@@ -880,7 +880,24 @@ function toLowerCase(string) {
 // Substring(1)
 
 function substr(string, start, length) {
-  // …
+  let result = '';
+  let idx;
+  
+  if (start >= 0) {
+    idx = start;
+  } else {
+    idx = (string.length + start)
+  }
+
+  for(let i = length; length > 0; length--) {
+    if (string[idx] != undefined) {
+      break;
+    }
+    result += string[idx];
+    idx++;
+  }
+
+  return result;
 }
 
 let string = 'hello world';
@@ -890,3 +907,40 @@ substr(string, -3, 2);     // "rl"
 substr(string, 8, 20);     // "rld"
 substr(string, 0, -20);    // ""
 substr(string, 0, 0);      // ""
+
+// LS Solution
+
+function substr(string, start, length) {
+  if (start < 0) {
+    start = string.length + start;
+  }
+
+  let newString = '';
+  for (let counter = 0; counter < length; counter += 1) {
+    let index = start + counter;
+
+    if (string[index] === undefined) {
+      break;
+    }
+
+    newString += string[index];
+  }
+
+  return newString;
+}
+
+// The built in method, though `subtstr` is a legacy function and should be avoided when possible.
+
+let string = 'hello world';
+
+string.substr(2, 4);    // "llo "
+string.substr(-3, 2);   // "rl"
+string.substr(8, 20);   // "rld"
+string.substr(0, -20);  // ""
+string.substr(0, 0);    // ""
+string.substr(1);       // "ello world"
+                        // goes to the end of the string if the second arg is omitted
+
+// Substring(2)
+
+
