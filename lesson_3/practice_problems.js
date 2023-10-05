@@ -943,4 +943,95 @@ string.substr(1);       // "ello world"
 
 // Substring(2)
 
+function substring(string, start, end) {
+  let sLength = string.length;
+  let resultString = '';
 
+  if (start > end) {
+    let temp = start;
+    start = end;
+    end = temp;
+    // Could have also used destructive reassigned ie: `[start, end] = [end, start]`
+  }
+
+  if (isNaN(start) || start < 0) {
+    start = 0;
+  }
+
+  if (end == undefined) {
+    end = sLength;
+  } else if (isNaN(end) || end < 0) {
+    end = 0;
+  }
+
+  let length = end - start;
+  for (let counter = 0; counter < length; counter += 1) {
+    let index = start + counter;
+
+    if (string[index] === undefined) {
+      break;
+    }
+
+    resultString += string[index];
+  }
+  return resultString;
+}
+
+let string = 'hello world';
+
+substring(string, 2, 4);    // "ll"
+substring(string, 4, 2);    // "ll"
+substring(string, 0, -1);   // ""
+substring(string, 2);       // "llo world"
+substring(string, 'a');     // "hello world"
+substring(string, 8, 20);   // "rld"
+
+// LS Solution
+
+function substring(string, start, end) {
+  if (end === undefined) {
+    end = string.length;
+  }
+
+  if (start < 0 || isNaN(start)) {
+    start = 0;
+  }
+
+  if (end < 0 || isNaN(end)) {
+    end = 0;
+  }
+
+  if (start > end) {
+    [start, end] = [end, start];
+  }
+
+  if (start > string.length) {
+    start = string.length;
+  }
+
+  if (end > string.length) {
+    end = string.length;
+  }
+
+  let newString = '';
+  for (let index = start; index < end; index += 1) {
+    newString += string[index];
+  }
+
+  return newString;
+}
+
+// The built in method
+
+let string = 'hello world';
+
+string.substring(2, 4);    // "ll"
+string.substring(4, 2);    // "ll"
+
+string.substring(0, -1);   // ""
+string.substring(-1, 0);   // ""
+
+string.substring(8, 20);   // "rld"
+string.substring(20, 8);   // "rld"
+
+string.substring(2);       // "llo world"
