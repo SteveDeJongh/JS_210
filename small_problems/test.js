@@ -1,16 +1,19 @@
 let readlineSync = require('readline-sync');
 
-console.log('What is the bill?');
-let bill = readlineSync.prompt();
-bill = parseInt(bill);
+console.log('Please enter an integer great than 0:')
+let end = readlineSync.prompt();
+console.log("Enter 's' to compute the sum, or 'p' to compute the product.");
+let calc = readlineSync.prompt();
 
-console.log('What is the tip percentage?');
-let percentage = readlineSync.prompt();
-percentage = parseFloat(percentage)/100;
-console.log(bill);
-console.log(percentage);
-let tip = (bill * percentage);
-let total = (tip + bill);
+let result = 1;
 
-console.log('The tip is $' + tip.toFixed(2));
-console.log('The total is $' + total.toFixed(2));
+if (calc === 's') {
+  for (let i = 2; i <= end; i++) {
+    result += i;
+  }
+} else if (calc === 'p') {
+  for (let i = 1; i <= end; i++) {
+    result *= i;
+  }
+}
+console.log(result);

@@ -42,17 +42,13 @@ console.log(
   `The area of the room is ${areaInMeters.toFixed(2)} square meters (${areaInFeet.toFixed(2)} square feet).`
 );
 
-// Tip Calculator
-
-let readlineSync = require('readline-sync');
+// 4 Tip Calculator
 
 console.log('What is the bill?');
-let bill = readlineSync.prompt();
-bill = parseInt(bill);
+let bill = parseFloat(bill);
 
 console.log('What is the tip percentage?');
-let percentage = readlineSync.prompt();
-percentage = parseFloat(percentage)/100;
+let percentage = parseFloat(percentage)/100;
 
 let tip = (bill * percentage);
 let total = (tip + bill);
@@ -70,3 +66,60 @@ const total = bill + tip;
 
 console.log(`The tip is $${tip.toFixed(2)}`);
 console.log(`The total is $${total.toFixed(2)}`);
+
+// 5 Sum or Product of Consecutive Integers
+
+let readlineSync = require('readline-sync');
+
+console.log('Please enter an integer great than 0:')
+let end = readlineSync.prompt();
+console.log("Enter 's' to compute the sum, or 'p' to compute the product.");
+let calc = readlineSync.prompt();
+
+let result = 1;
+
+if (calc === 's') {
+  for (let i = 2; i <= end; i++) {
+    result += i;
+  }
+} else if (calc === 'p') {
+  for (let i = 1; i <= end; i++) {
+    result *= i;
+  }
+}
+console.log(result);
+
+// LS Solution
+
+function computeSum(number) {
+  let total = 0;
+
+  for (let i = 1; i <= number; i += 1) {
+    total += i;
+  }
+
+  return total;
+}
+
+function computeProduct(number) {
+  let total = 1;
+
+  for (let i = 1; i <= number; i += 1) {
+    total *= i;
+  }
+
+  return total;
+}
+
+const number = parseInt(prompt('Please enter an integer greater than 0'), 10);
+const operation = prompt('Enter "s" to compute the sum, or "p" to compute the product.');
+
+if (operation === 's') {
+  let sum = String(computeSum(number));
+  console.log(`The sum of the integers between 1 and ${String(number)} is ${sum}.`);
+} else if (operation === 'p') {
+  let product = String(computeProduct(number));
+  console.log(`The product of the integers between 1 and ${String(number)} is ${product}.`);
+} else {
+  console.log('Oops. Unknown operation.');
+}
