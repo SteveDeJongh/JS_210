@@ -91,3 +91,74 @@ function repeatChar(char, times) {
 
   return repeated;
 }
+
+// 3 Stringy Strings
+
+// Write a function that takes one argument, a positive integer, and returns a string of alternating '1's and '0's, always starting with a '1'. The length of the string should match the given integer.
+
+function stringy(num) {
+  let res = '';
+
+  for (i = 1; i <= num; i++) {
+    res += (i % 2 === 0) ? '0' : '1';
+  }
+
+  return res;
+}
+
+stringy(6);    // "101010"
+stringy(9);    // "101010101"
+stringy(4);    // "1010"
+stringy(7);    // "1010101"
+
+// LS Solution
+
+function stringy(size) {
+  let result = '';
+
+  for (let i = 0; i < size; i += 1) {
+    if (i % 2 === 0) {
+      result += '1';
+    } else {
+      result += '0';
+    }
+  }
+
+  return result;
+}
+
+// 4 Fib number (osbolete) Skipped for now.
+
+// 5 Right Triangles
+
+function triangle(num) {
+  for (i = 1; i <= num; i++) {
+      console.log(' '.repeat(num - i) + '*'.repeat(i));
+  }
+}
+
+triangle(5);
+
+// LS Solution
+
+function triangle(height) {
+  let stars = 1;
+  let spaces = height - 1;
+
+  for (let i = 0; i < height; i += 1) {
+    console.log(repeat(' ', spaces) + repeat('*', stars));
+    stars += 1;
+    spaces -= 1;
+  }
+}
+
+function repeat(char, count) {
+  let repeated = '';
+
+  for (let i = 0; i < count; i += 1) {
+    repeated += char;
+  }
+
+  return repeated;
+}
+
