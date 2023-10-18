@@ -331,3 +331,78 @@ const isUpperCaseLetter = (char) => char >= 'A' && char <= 'Z';
 
 // 9 What Century is That
 
+// Write a function that takes a year as input and returns the century. The return value should be a string that begins with the century number, and ends with 'st', 'nd', 'rd', or 'th' as appropriate for that number.
+
+// New centuries begin in years that end with 01. So, the years 1901 - 2000 comprise the 20th century.
+
+function century(year) {
+  let century = Math.floor(year / 100) + 1;
+  if (year % 100 === 0) {
+    century -= 1
+  }
+  return String(century) + cent_ending(century);
+}
+
+function cent_ending(cent) {
+  let val = '';
+
+  if ([11, 12, 13].includes(cent % 100)) {
+    val = 'th';
+    return val;
+  }
+
+  let cent_last = cent % 10;
+  if (cent_last === 0) {
+    val = 'th';
+  } else if (cent_last === 1) {
+    val = 'st';
+  } else if (cent_last === 2) {
+    val = 'nd';
+  } else if (cent_last === 3) {
+    val = 'rd';
+  } else {
+    val = 'th';
+  }
+
+  return val;
+}
+
+century(2000);        // "20th"
+century(2001);        // "21st"
+century(1965);        // "20th"
+century(256);         // "3rd"
+century(5);           // "1st"
+century(10103);       // "102nd"
+century(1052);        // "11th"
+century(1127);        // "12th"
+century(11201);       // "113th"
+
+// LS Solution
+
+function century(year) {
+  let centuryNumber = Math.floor(year / 100) + 1;
+
+  if (year % 100 === 0) {
+    centuryNumber -= 1;
+  }
+
+  return String(centuryNumber) + centurySuffix(centuryNumber);
+}
+
+function centurySuffix(centuryNumber) {
+  if (catchWithTh(centuryNumber % 100)) {
+    return 'th';
+  }
+
+  let lastDigit = centuryNumber % 10;
+  switch (lastDigit) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+}
+
+function catchWithTh(lastTwo) {
+  return lastTwo === 11 || lastTwo === 12 || lastTwo === 13;
+}
