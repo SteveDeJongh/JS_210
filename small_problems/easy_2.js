@@ -162,7 +162,7 @@ function repeat(char, count) {
   return repeated;
 }
 
-// 5 Madlibs
+// 6 Madlibs
 
 // Madlibs is a simple game where you create a story template with "blanks" for words. You, or another player, then construct a list of words and place them into the story, creating an often silly or funny story as a result.
 
@@ -192,7 +192,7 @@ console.log(sentence1);
 console.log(sentence2);
 console.log(sentence3);
 
-// 6 Doubles Doubles
+// 7 Doubles Doubles
 
 // A double number is an even-length number whose left-side digits are exactly the same as its right-side digits. For example, 44, 3333, 103103, and 7676 are all double numbers, whereas 444, 334433, and 107 are not.
 
@@ -224,7 +224,7 @@ twice(103103);      // 103103
 twice(3333);        // 3333
 twice(7676);        // 7676
 
-// 7 Grade Book
+// 8 Grade Book
 
 // Write a function that determines the mean (average) of the three scores passed to it, and returns the letter associated with that grade.
 
@@ -279,7 +279,7 @@ function getGrade(grade1, grade2, grade3) {
   }
 }
 
-// 8 Clean Up the Words
+// 9 Clean Up the Words
 
 // Given a string that consists of some words and an assortment of non-alphabetic characters, write a function that returns that string with all of the non-alphabetic characters replaced by spaces. If one or more non-alphabetic characters occur in a row, you should only have one space in the result (i.e., the result string should never have consecutive spaces).
 
@@ -329,7 +329,7 @@ const isLowerCaseLetter = (char) => char >= 'a' && char <= 'z';
 
 const isUpperCaseLetter = (char) => char >= 'A' && char <= 'Z';
 
-// 9 What Century is That
+// 10 What Century is That
 
 // Write a function that takes a year as input and returns the century. The return value should be a string that begins with the century number, and ends with 'st', 'nd', 'rd', or 'th' as appropriate for that number.
 
