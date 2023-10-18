@@ -198,6 +198,23 @@ console.log(sentence3);
 
 // Write a function that returns the number provided as an argument multiplied by two, unless the argument is a double number; otherwise, return the double number as-is.
 
+function twice(number) {
+  if (isDoubleNumber(number)) {
+    return number;
+  } else {
+    return number * 2;
+  }
+}
+
+function isDoubleNumber(number) {
+  const stringNumber = String(number);
+  const center = stringNumber.length/2 ;
+  const leftNumber = stringNumber.substring(0, center);
+  const rightNumber = stringNumber.substring(center);
+
+  return leftNumber === rightNumber;
+}
+
 twice(37);          // 74
 twice(44);          // 44
 twice(334433);      // 668866
@@ -206,3 +223,111 @@ twice(107);         // 214
 twice(103103);      // 103103
 twice(3333);        // 3333
 twice(7676);        // 7676
+
+// 7 Grade Book
+
+// Write a function that determines the mean (average) of the three scores passed to it, and returns the letter associated with that grade.
+
+// Numerical score letter grade list:
+
+// 90 <= score <= 100: 'A'
+// 80 <= score < 90: 'B'
+// 70 <= score < 80: 'C'
+// 60 <= score < 70: 'D'
+// 0 <= score < 60: 'F'
+// Tested values are all between 0 and 100. There is no need to check for negative values or values greater than 100.
+
+function getGrade(g1, g2, g3) {
+  let avg = calculateAvg(g1,g2,g3);
+
+  if (avg >= 90) {
+    console.log('A');
+  } else if (avg >= 80) {
+    console.log('B');
+  } else if (avg >= 70) {
+    console.log('C');
+  } else if (avg >= 60) {
+    console.log('D');
+  } else {
+    console.log('F')
+  }
+}
+
+function calculateAvg(g1, g2, g3) {
+  let sum = g1 + g2 + g3;
+  return sum / 3;
+}
+
+getGrade(95, 90, 93);    // "A"
+getGrade(50, 50, 95);    // "D"
+
+// LS Solution
+
+function getGrade(grade1, grade2, grade3) {
+  const average = (grade1 + grade2 + grade3) / 3;
+
+  if (average >= 90 && average <= 100) {
+    return 'A';
+  } else if (average >= 80 && average < 90) {
+    return 'B';
+  } else if (average >= 70 && average < 80) {
+    return 'C';
+  } else if (average >= 60 && average < 70) {
+    return 'D';
+  } else {
+    return 'F';
+  }
+}
+
+// 8 Clean Up the Words
+
+// Given a string that consists of some words and an assortment of non-alphabetic characters, write a function that returns that string with all of the non-alphabetic characters replaced by spaces. If one or more non-alphabetic characters occur in a row, you should only have one space in the result (i.e., the result string should never have consecutive spaces).
+
+
+const upperStart = 65;
+const upperEnd = 90;
+const lowerStart = 97;
+const lowerEnd = 122;
+
+function cleanUp(string) {
+  let resultString = '';
+
+  for (i = 0; i < string.length; i++) {
+    let code = string.charCodeAt(i);
+    let currentChar = string[i];
+
+    if ((code >= upperStart && code <= upperEnd) || (code >= lowerStart && code <= lowerEnd)) {
+      resultString += currentChar;
+    } else if (resultString.charAt(resultString.length - 1) != ' ') {
+      resultString += ' '
+    }
+  }
+  return resultString
+}
+
+cleanUp("---what's my +*& line?");    // " what s my line "
+
+// LS Solution
+
+function cleanUp(text) {
+  let cleanText = '';
+
+  for (let idx = 0; idx < text.length; idx += 1) {
+    if (isLowerCaseLetter(text[idx]) || isUpperCaseLetter(text[idx])) {
+      cleanText += text[idx];
+    } else if (idx === 0 || lastChar(cleanText) !== ' ') {
+      cleanText += ' ';
+    }
+  }
+
+  return cleanText;
+}
+
+const lastChar = (text) => text[text.length - 1];
+
+const isLowerCaseLetter = (char) => char >= 'a' && char <= 'z';
+
+const isUpperCaseLetter = (char) => char >= 'A' && char <= 'Z';
+
+// 9 What Century is That
+
