@@ -162,3 +162,47 @@ function repeat(char, count) {
   return repeated;
 }
 
+// 5 Madlibs
+
+// Madlibs is a simple game where you create a story template with "blanks" for words. You, or another player, then construct a list of words and place them into the story, creating an often silly or funny story as a result.
+
+// Create a simple madlib program that prompts for a noun, a verb, an adverb, and an adjective, and injects them into a story that you create.
+
+function madlibs() {
+  let noun = prompt('Enter a noun:');
+  let verb = prompt('Enter a verb:');
+  let adjective = prompt('Enter a adjective:');
+  let adverb = prompt('Enter a adverb:');
+
+  console.log(`Do you ${verb} your ${adjective} ${noun} ${adverb}? That's hilarious!`);
+}
+
+// LS Solution
+
+const noun = prompt('Enter a noun:');
+const verb = prompt('Enter a verb:');
+const adjective = prompt('Enter an adjective:');
+const adverb = prompt('Enter an adverb:');
+
+const sentence1 = `Do you ${verb} your ${adjective} ${noun} ${adverb}? That's hilarious!`;
+const sentence2 = `The ${adjective} ${noun} ${verb}s ${adverb} over the lazy dog.`;
+const sentence3 = `The ${noun} ${adverb} ${verb}s up ${adjective} Joe's turtle.`;
+
+console.log(sentence1);
+console.log(sentence2);
+console.log(sentence3);
+
+// 6 Doubles Doubles
+
+// A double number is an even-length number whose left-side digits are exactly the same as its right-side digits. For example, 44, 3333, 103103, and 7676 are all double numbers, whereas 444, 334433, and 107 are not.
+
+// Write a function that returns the number provided as an argument multiplied by two, unless the argument is a double number; otherwise, return the double number as-is.
+
+twice(37);          // 74
+twice(44);          // 44
+twice(334433);      // 668866
+twice(444);         // 888
+twice(107);         // 214
+twice(103103);      // 103103
+twice(3333);        // 3333
+twice(7676);        // 7676
