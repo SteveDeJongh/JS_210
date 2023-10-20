@@ -231,6 +231,7 @@ function shift(array) {
 
 // LS Solutions
 
+// shift
 function shift(array) {
   let result;
 
@@ -241,6 +242,7 @@ function shift(array) {
   return result;
 }
 
+// unshift
 function unshift(array, ...args) {
   for (let i = 0; i < args.length; i += 1) {
     array.splice(i , 0, args[i]);
@@ -262,3 +264,94 @@ shift(testArray);                // 1
 testArray;                       // [2, 3]
 unshift(testArray, 5);           // 3
 testArray;                       // [5, 2, 3]
+
+// Array Slice and Splice
+
+// Slice
+
+function slice(array, begin, end) {
+  let resArray = [];
+
+  for (i = begin; i < end && i < array.length; i++) {
+    resArray.push(array[i]);
+  }
+
+  return resArray;
+}
+
+slice([1, 2, 3], 1, 2);               // [2]
+slice([1, 2, 3], 2, 0);               // []
+slice([1, 2, 3], 5, 1);               // []
+slice([1, 2, 3], 0, 5);               // [1, 2, 3]
+
+const arr1 = [1, 2, 3];
+slice(arr1, 1, 3);                     // [2, 3]
+arr1;                                  // [1, 2, 3]
+
+// Splice
+
+function splice(array, start, deleteCount, ...args) {
+  //..
+}
+
+splice([1, 2, 3], 1, 2);              // [2, 3]
+splice([1, 2, 3], 1, 3);              // [2, 3]
+splice([1, 2, 3], 1, 0);              // []
+splice([1, 2, 3], 0, 1);              // [1]
+splice([1, 2, 3], 1, 0, 'a');         // []
+
+const arr2 = [1, 2, 3];
+splice(arr2, 1, 1, 'two');             // [2]
+arr2;                                  // [1, "two", 3]
+
+const arr3 = [1, 2, 3];
+splice(arr3, 1, 2, 'two', 'three');    // [2, 3]
+arr3;                                  // [1, "two", "three"]
+
+const arr4 = [1, 2, 3];
+splice(arr4, 1, 0);                    // []
+splice(arr4, 1, 0, 'a');               // []
+arr4;                                  // [1, "a", 2, 3]
+
+const arr5 = [1, 2, 3];
+splice(arr5, 0, 0, 'a');               // []
+arr5;                                  // ["a", 1, 2, 3]
+
+// LS Solution
+
+function slice(array, begin, end) {
+  const result = [];
+
+  begin = begin > array.length ? array.length : begin;
+  end = end > array.length ? array.length : end;
+
+  for (let i = begin; i < end; i += 1) {
+    result.push(array[i]);
+  }
+
+  return result;
+}
+
+function splice(array, start, deleteCount, ...args) {
+  start = start > array.length ? array.length : start;
+  deleteCount = deleteCount > (array.length - start) ? array.length - start : deleteCount;
+
+  const arrayCopy = slice(array, 0, array.length);
+  const elementCount = args.length;
+  const newLength = array.length + elementCount - deleteCount;
+  array.length = newLength;
+
+  for (let i = 0; i < elementCount; i += 1) {
+    array[start + i] = args[i];
+  }
+
+  let copyBackCount = arrayCopy.length - (start + deleteCount);
+  for (let i = 0; i < copyBackCount; i += 1) {
+    array[start + elementCount + i] = arrayCopy[start + deleteCount + i];
+  }
+
+  return slice(arrayCopy, start, start + deleteCount);
+}
+
+// Oddities
+
