@@ -77,3 +77,18 @@ const randomInt = function(min, max) {
 };
 
 console.log(randomInt(1, 5));
+
+// OR 
+
+const randomInt = function(min, max) {
+  if (min === max) {
+    return min;
+  } else if (min > max) {
+    [min, max] = [max, min];
+  }
+
+  let difference = max - min + 1;
+  return Math.floor(Math.random() * difference) + min;
+};
+
+console.log(randomInt(1, 5));
