@@ -97,3 +97,87 @@ console.log(`${firstNumber} % ${secondNumber} = ${firstNumber % secondNumber}`);
 console.log(
   `${firstNumber} ** ${secondNumber} = ${Math.pow(firstNumber, secondNumber)}`
 );
+
+// 6 Counthing the number of Characters
+
+// ex:
+Please enter a phrase: walk
+// console output
+There are 4 characters in "walk".
+
+Please enter a phrase: walk, don't run
+// console output
+There are 15 characters in "walk, don't run".
+
+function characterCount() {
+  const readlineSync = require("readline-sync");
+  console.log("Please enter a phrase:");
+  let inputString = String(readlineSync.prompt());
+  let count = inputString.length;
+
+  console.log(`THere are ${count} characters in "${inputString}".`)
+}
+
+// LS Solution
+
+const input = prompt('Please enter a phrase:');
+const numberOfCharacters = String(input.length);
+
+console.log(`There are ${numberOfCharacters} characters in '${input}'.`);
+
+// FE, don't count spaces.
+
+const input = prompt('Please enter a phrase:');
+const cleanedInput = input.replaceAll(' ', '');
+const numberOfCharacters = String(cleanedInput.length);
+
+console.log(`There are ${numberOfCharacters} non-space characters in '${input}'.`);
+
+// Using regex and `replace`
+
+const input = prompt('Please enter a phrase:');
+const cleanedInput = input.replace(/ /g, '');
+const numberOfCharacters = String(cleanedInput.length);
+
+console.log(`There are ${numberOfCharacters} non-space characters in '${input}'.`);
+
+// Further challenge, only count alphabetical characters.
+
+const input = prompt('Please enter a phrase:');
+const cleanedInput = input.replace(/[^a-z]/gi, ''); // 'g' flag replaces all, 'i' is case incensitive.
+const numberOfCharacters = String(cleanedInput.length);
+
+console.log(`There are ${numberOfCharacters} characters in '${input}'.`);
+
+// 7 Convert a String to a Number
+
+const DIGITS = {
+  '0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
+  '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+};
+
+function stringToInteger(string) {
+  let value = 0;
+  const numbers = stringToNumbers(string);
+
+  for (let i = 0; i < numbers.length; i += 1) {
+    value = 10 * value + numbers[i];
+  }
+
+  return value;
+}
+
+function stringToNumbers(string) {
+  const result = [];
+
+  for (let i = 0; i < string.length; i += 1) {
+    result.push(DIGITS[string[i]]);
+  }
+
+  return result;
+}
+
+stringToInteger('4321');      // 4321
+stringToInteger('570');       // 570
+
+// 8 Convert a String to a Signed Number
