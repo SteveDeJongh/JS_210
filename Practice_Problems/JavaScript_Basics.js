@@ -181,3 +181,52 @@ stringToInteger('4321');      // 4321
 stringToInteger('570');       // 570
 
 // 8 Convert a String to a Signed Number
+
+function stringToSignedInteger(string) {
+  switch (string[0]) {
+    case '-': return -stringToInteger(string.slice(1));
+    case '+': return stringToInteger(string.slice(1));
+    default:  return stringToInteger(string);
+  }
+}
+
+stringToSignedInteger('4321');      // 4321
+stringToSignedInteger('-570');      // -570
+stringToSignedInteger('+100');      // 100
+
+// 9 Convert a Number to a String
+
+const DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+function integerToString(input) {
+  let result = '';
+
+  do {
+     let remainder = input % 10;
+     input = Math.floor(input/10);
+
+     result = DIGITS[remainder] + result;
+  } while (input > 0);
+
+  return result;
+}
+
+integerToString(4321);      // "4321"
+integerToString(0);         // "0"
+integerToString(5000);      // "5000"
+
+// 10 Convert a Signed Number to a String
+
+function signedIntegerToString(input) {
+  if (input > 0) {
+    return "+" + integerToString(input);
+  } else if (input < 0) {
+    return "-" + integerToString(input - input * 2); // OR (-input)
+  } else {
+    return "0";
+  }
+}
+
+signedIntegerToString(4321);      // "+4321"
+signedIntegerToString(-123);      // "-123"
+signedIntegerToString(0);         // "0"
