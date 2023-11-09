@@ -205,3 +205,33 @@ invoiceTotal(20, 30, 40, 50, 40, 40);  // does not work; how can you make it wor
 
 // 8 Product of Sums
 
+function productOfSums(array1, array2) {
+  let result = total(array1) * total(array2);
+  return result;
+}
+
+function total(numbers) {
+  let sum;
+
+  for (let i = 0; i < numbers.length; i += 1) {
+    sum += numbers[i];
+  }
+
+  sum;
+}
+
+// The `sum` is not explicitely returned from the `total` function, therfor the multiplication of the two return values for total(array1) and total(array2) would not work, as it would be working with "undefined" values.
+
+// This code has two issues. The first is that the total function does not have an explicit return statement, and thus returns undefined. Since total returns undefined, the expression total(array1) * total(array2) becomes undefined * undefined, which evaluates to NaN. The second issue is that in the total function, the sum variable is not explicitly assigned a value, which means that it has a value of undefined by default. Therefore, at the end of each iteration of the loop, sum is assigned a value of NaN because the expression undefined + numbers[i] evaluates to NaN.
+
+// The corrected version of the code would be:
+
+function total(numbers) {
+  let sum = 0;
+
+  for (let i = 0; i < numbers.length; i += 1) {
+    sum += numbers[i];
+  }
+
+  return sum;
+}
