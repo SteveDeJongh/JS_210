@@ -75,7 +75,7 @@ for (let i = 1; i < 10; i += 1) {
 function getSelectedColumns(numbers, cols) {
   var result = [];
 
-  for (var i = 0, length = numbers.length; i < length; i += 1) {
+  for (var i = 0, length = numbers.length; i < length; i += 1) { // declaring the variables i and length with the var keyword gives them function scope. To change this, decalre with `let` for block scope.
     for (var j = 0, length = cols.length; j < length; j += 1) {
       if (!result[j]) {
         result[j] = [];
@@ -100,3 +100,108 @@ const array2 = [[1, 2, 3], [1, 2, 3], [1, 2, 3]];
 getSelectedColumns(array1, [0]);     // [[1]];            expected: [[1, 4, 7]]
 getSelectedColumns(array1, [0, 2]);  // [[1, 4], [3, 6]]; expected: [[1, 4, 7], [3, 6, 9]]
 getSelectedColumns(array2, [1, 2]);  // [[2, 2], [3, 3]]; expected: [[2, 2, 2], [3, 3, 3]]
+
+// Possible Solution
+function getSelectedColumns(numbers, cols) {
+  const result = [];
+
+  for (let i = 0, length = numbers.length; i < length; i += 1) {
+    for (let j = 0, length = cols.length; j < length; j += 1) {
+      if (!result[j]) {
+        result[j] = [];
+      }
+
+      result[j][i] = numbers[i][cols[j]];
+    }
+  }
+
+  return result;
+}
+
+// 5 Counter
+
+// A
+var counter = 5;
+var rate = 3;
+console.log('The total value is ' + String(counter * rate));
+
+function counter(count) {
+  // ...
+}
+// The total value is 15
+
+// B
+
+function counter(count) {
+  // ...
+}
+
+console.log('The total value is ' + String(counter * rate));
+
+var counter = 5;
+var rate = 3;
+// The total value is NaN.
+
+// C
+var counter = 5;
+var rate = 3;
+
+function counter(count) {
+  // ...
+}
+
+console.log('The total value is ' + String(counter * rate));
+
+// The total value is 15
+
+// D
+let counter = 5;
+let rate = 3;
+
+function counter(count) {
+  // ...
+}
+
+console.log('The total value is ' + String(counter * rate));
+
+// Error: Counter has already been declared.
+
+// 6 Logger
+
+function debugIt() {
+  const status = 'debugging';
+  function logger() {
+    console.log(status);
+  }
+
+  logger();
+}
+
+debugIt();
+
+// Logs "debugging"
+
+// The debugIt function defines a local variable named status and a function named logger. logger is an inner (nested) function, so it has access to any variables declared in the scope of its outer (parent) function, debugIt, due to lexical scoping rules.
+
+// 7 Invoice
+
+function invoiceTotal(amount1, amount2, amount3, amount4) {
+  return amount1 + amount2 + amount3 + amount4;
+}
+
+// Above code refactored to work with any number of line items.
+
+function invoiceTotal(...items) {
+  let total = 0;
+  for( i = 0; i < items.length; i++) {
+    total += items[i];
+  }
+
+  return total;
+}
+
+invoiceTotal(20, 30, 40, 50);          // works as expected
+invoiceTotal(20, 30, 40, 50, 40, 40);  // does not work; how can you make it work?
+
+// 8 Product of Sums
+
