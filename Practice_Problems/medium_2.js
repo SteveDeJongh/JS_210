@@ -185,3 +185,18 @@ function one() {
 
 one()(77, 97, 116, 114, 105, 120, 33);
 
+// Welcome
+// to
+// the
+// Matrix!
+
+// The trick to solving this problem is to follow the sequence of function calls. The call to the one function may look confusing, but it is actually just two successive function calls (because the one function returns the anotherOne function). Notice that when the anotherOne function is returned, it still has access to the log function that is declared in its enclosing scope (closure) inside the one function.
+
+// 1: one();
+// 2: anotherAnotherOne();                         // Welcome
+// 3: anotherOne(116, 111);
+// 4: log(result);                                 // to
+// 5: anotherOne(116, 104, 101);
+// 6: log(result);                                 // the
+// 7: anotherOne(77, 97, 116, 114, 105, 120, 33);
+// 8: log(result);                                 // Matrix!
