@@ -186,3 +186,245 @@ isRealPalindrome('123ab321');            // false
 
 // 6 Palindromic Number
 
+function isPalindromicNumber(num) {
+  let stringNum = String(num);
+  return isRealPalindrome(stringNum);
+}
+
+isPalindromicNumber(34543);        // true
+isPalindromicNumber(123210);       // false
+isPalindromicNumber(22);           // true
+isPalindromicNumber(5);            // true
+
+// 7 Running Totals
+
+function runningTotal(arr) {
+  let resArr = [];
+
+  for (i = 0; i < arr.length; i++) {
+    if (i === 0) {
+      resArr[i] = arr[i];
+    } else {
+      resArr[i] = arr[i] + resArr[i - 1];
+    }
+  }
+
+  return resArr;
+}
+
+runningTotal([2, 5, 13]);             // [2, 7, 20]
+runningTotal([14, 11, 7, 15, 20]);    // [14, 25, 32, 47, 67]
+runningTotal([3]);                    // [3]
+runningTotal([]);                     // []
+
+// LS Solution, uses a sum variable instead of referencing the latest value in the new result array.
+
+function runningTotal(array) {
+  const resultArray = [];
+  let sum = 0;
+
+  for (let i = 0; i < array.length; i += 1) {
+    sum += array[i];
+    resultArray.push(sum);
+  }
+
+  return resultArray;
+}
+
+// FE, using `Array.prototype.map()`
+
+function runningTotal(arr) {
+  let sum = 0;
+
+  return arr.map(num => sum += num);
+}
+
+// 8 Letter Swap
+
+function swap(input) {
+  let words = input.split(' ');
+  let result = [];
+  
+  for (i = 0; i < words.length; i++) {
+    let characters = words[i].split('');
+    let temp = characters[characters.length - 1];
+    characters[characters.length - 1] = characters[0];
+    characters[0] = temp;
+    result.push(characters.join(''));
+  }
+
+  return result.join(' ');
+}
+
+// Using Destructing Assignment
+
+function swap(input) {
+  let words = input.split(' ');
+  let result = [];
+  
+  for (i = 0; i < words.length; i++) {
+    let characters = words[i].split('');
+    [characters[0], characters[characters.length - 1]] = [characters[characters.length - 1],  characters[0]];
+    result.push(characters.join(''));
+  }
+
+  return result.join(' ');
+}
+
+swap('Oh what a wonderful day it is');  // "hO thaw a londerfuw yad ti si"
+swap('Abcde');                          // "ebcdA"
+swap('a');                              // "a"
+
+// LS Solution
+
+function swap(words) {
+  const wordsArray = words.split(' ');
+
+  for (let i = 0; i < wordsArray.length; i += 1) {
+    wordsArray[i] = swapFirstLastCharacters(wordsArray[i]);
+  }
+
+  return wordsArray.join(' ');
+}
+
+function swapFirstLastCharacters(word) {
+  if (word.length === 1) {
+    return word;
+  }
+
+  return word[word.length - 1] + word.slice(1, -1) + word[0];
+}
+
+// FE, using map
+
+function swap(words) {
+  const wordsArray = words.split(' ');
+
+  return wordsArray.map(swapFirstLastCharacters).join(' ');
+}
+
+function swapFirstLastCharacters(word) {
+  if (word.length === 1) {
+    return word;
+  }
+
+  return word[word.length - 1] + word.slice(1, -1) + word[0];
+}
+
+// 9 Letter Counter Part 1
+
+function wordSizes(input) {
+  if (input === '') {
+    return {};
+  }
+
+  let words = input.split(' ');
+  let result = {};
+
+  for (i = 0; i < words.length; i++) {
+    let length = words[i].length;
+    let key = String(length);
+
+    if (Object.keys(result).includes(key)) {
+      result[key]++
+    } else {
+      result[key] = 1;
+    }
+  }
+
+  return result;
+}
+
+wordSizes('Four score and seven.');                       // { "3": 1, "4": 1, "5": 1, "6": 1 }
+wordSizes('Hey diddle diddle, the cat and the fiddle!');  // { "3": 5, "6": 1, "7": 2 }
+wordSizes("What's up doc?");                              // { "2": 1, "4": 1, "6": 1 }
+wordSizes('');                                            // {}
+
+// LS Solution
+
+function wordSizes(words) {
+  const wordsArray = words.split(' ');
+  const count = {};
+
+  for (let i = 0; i < wordsArray.length; i += 1) {
+    let wordSize = wordsArray[i].length;
+    if (wordSize === 0) {
+      continue;
+    }
+
+    count[wordSize] = count[wordSize] || 0;
+    count[wordSize] += 1;
+  }
+
+  return count;
+}
+
+// 10 Letter Counter Part 2
+
+function wordSizes(words) {
+  const wordsArray = words.split(' ');
+  const count = {};
+
+  for (let i = 0; i < wordsArray.length; i += 1) {
+    let wordSize = getWordSize(wordsArray[i]);
+    if (wordSize === 0) {
+      continue;
+    }
+
+    count[wordSize] = count[wordSize] || 0;
+    count[wordSize] += 1;
+  }
+
+  return count;
+}
+
+function getWordSize(word) {
+  let count = 0;
+  let chars = word.split('');
+
+  for (i = 0; i < chars.length; i++) {
+    let char = chars[i];
+    if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+      count += 1;
+    }
+  }
+
+  return count;
+}
+wordSizes('Four score and seven.');                       // { "3": 1, "4": 1, "5": 2 }
+wordSizes('Hey diddle diddle, the cat and the fiddle!');  // { "3": 5, "6": 3 }
+wordSizes("What's up doc?");                              // { "5": 1, "2": 1, "3": 1 }
+wordSizes('');                                            // {}
+
+// LS Solution
+
+function wordSizes(words) {
+  const wordsArray = words.split(' ');
+  const count = {};
+
+  for (let i = 0; i < wordsArray.length; i += 1) {
+    let cleanWordSize = removeNonLetters(wordsArray[i].toLowerCase()).length;
+    if (cleanWordSize === 0) {
+      continue;
+    }
+
+    count[cleanWordSize] = count[cleanWordSize] || 0;
+    count[cleanWordSize] += 1;
+  }
+
+  return count;
+}
+
+function removeNonLetters(string)  {
+  let result = '';
+
+  for (let i = 0; i < string.length; i += 1) {
+    if (isLetter(string[i])) {
+      result += string[i];
+    }
+  }
+
+  return result;
+}
+
+function isLetter(char) { return char >= 'a' && char <= 'z' }
