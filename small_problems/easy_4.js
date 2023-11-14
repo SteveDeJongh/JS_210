@@ -259,6 +259,12 @@ function digitList(number) {
   // })
 }
 
+// Even more cleaned up.
+
+function digitList(number) {
+  return String(number).split('').map((num) => Number(num));
+}
+
 digitList(12345);       // [1, 2, 3, 4, 5]
 digitList(7);           // [7]
 digitList(375290);      // [3, 7, 5, 2, 9, 0]
@@ -275,4 +281,82 @@ function digitList(number) {
   }
 
   return numberArray;
+}
+
+// 9 How Many
+
+function countOccurrences(array) {
+  let result = {};
+
+  for (i = 0; i < array.length; i++) {
+    let word = array[i];
+    let count = 0;
+
+    if (!Object.keys(result).includes(word)) {
+      for (j = 0; j < array.length; j++) {
+        if (word === array[j]) {
+          count++;
+        }
+      }
+      result[word] = count;
+    }
+  }
+
+  let keys = Object.keys(result);
+  console.log(keys);
+
+  keys.forEach((key) => console.log(`${key} => ${result[key]}`));
+}
+
+const vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+                'motorcycle', 'suv', 'motorcycle', 'car', 'truck'];
+
+countOccurrences(vehicles);
+
+// console output
+// car => 4
+// truck => 3
+// SUV => 1
+// motorcycle => 2
+// suv => 1
+
+// LS Solution
+
+function countOccurrences(elements) {
+  const occurrences = {};
+
+  for (let i = 0; i < elements.length; i += 1) {
+    occurrences[elements[i]] = occurrences[elements[i]] || 0; // Either creates a key with a value of 0, or reassigns the vlaue to the existing value of the key.
+    occurrences[elements[i]] += 1;
+  }
+
+  logOccurrences(occurrences);
+}
+
+function logOccurrences(occurrences) {
+  for (let item in occurrences) {
+    console.log(`${item} => ${occurrences[item]}`);
+  }
+}
+
+// 10 Array Average
+
+function average(arr) {
+  let sum = arr.reduce((acc, curr) => acc + curr);
+  return Math.floor(sum / arr.length);
+}
+
+average([1, 5, 87, 45, 8, 8]);       // 25
+average([9, 47, 23, 95, 16, 52]);    // 40
+
+// LS Solution
+
+function average(numbers) {
+  let sum = 0;
+
+  for (let idx = 0; idx < numbers.length; idx += 1) {
+    sum += numbers[idx];
+  }
+
+  return Math.floor(sum / numbers.length);
 }
