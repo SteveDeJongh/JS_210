@@ -161,7 +161,20 @@ function halvsies(array) {
 // 4 Find the Duplicate
 
 function findDup(arr) {
-  
+  for (i = 0; i < arr.length; i++) {
+    let count = 0;
+    let num = arr[i];
+
+    for (j = 0; j < arr.length; j++) {
+      if (arr[j] === num) {
+        count++;
+      }
+    }
+
+    if (count >= 2) {
+      return num;
+    }
+  }
 }
 
 findDup([1, 5, 3, 1]);                                // 1
@@ -175,3 +188,91 @@ findDup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
          85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
          40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
           7, 34, 57, 74, 45, 11, 88, 67,  5, 58]);    // 73
+
+// LS Solution, using an object to change a numbers "seen" status to true, and returning if that key value already exists.
+
+function findDup(array) {
+  const seen = {};
+
+  for (let i = 0; i < array.length; i += 1) {
+    if (seen[array[i]]) {
+      return array[i];
+    } else {
+      seen[array[i]] = true;
+    }
+  }
+}
+
+// 5 Combine Two Lists
+
+function interleave(arr1, arr2) {
+  let resultArr = [];
+  
+  for (i = 0; i < arr1.length; i++) {
+    resultArr.push(arr1[i], arr2[i]);
+  }
+
+  return resultArr;
+}
+
+interleave([1, 2, 3], ['a', 'b', 'c']);    // [1, "a", 2, "b", 3, "c"]
+
+// 6 Multiplicative Average
+
+function showMultiplicativeAverage(numbers) {
+  let total = 1;
+
+  for (i = 0; i < numbers.length; i++) {
+    total *= numbers[i];
+  }
+
+  return (total / numbers.length).toFixed(3);
+}
+
+showMultiplicativeAverage([3, 5]);                   // "7.500"
+showMultiplicativeAverage([2, 5, 7, 11, 13, 17]);    // "28361.667"
+
+// 7 Multiply Lists
+
+function multiplyList(l1, l2) {
+  let resultArr = [];
+
+  for (i = 0; i < l1.length; i++) {
+    resultArr.push(l1[i] * l2[i]);
+  }
+
+  return resultArr;
+}
+
+multiplyList([3, 5, 7], [9, 10, 11]);    // [27, 50, 77]
+
+// 8 Digits List
+
+function digitList(number) {
+  let resArray = String(number).split('');
+
+  return resArray.map((num) => Number(num))
+
+  // Cleaned up version of the callback function:
+  // return resArray.map(function (num) {
+  //   return Number(num);
+  // })
+}
+
+digitList(12345);       // [1, 2, 3, 4, 5]
+digitList(7);           // [7]
+digitList(375290);      // [3, 7, 5, 2, 9, 0]
+digitList(444);         // [4, 4, 4]
+
+// LS Solution
+
+function digitList(number) {
+  const numberStringArray = String(number).split('');
+  const numberArray = [];
+
+  for (let i = 0; i < numberStringArray.length; i += 1) {
+    numberArray.push(parseInt(numberStringArray[i], 10));
+  }
+
+  return numberArray;
+}
