@@ -107,9 +107,20 @@ console.log(a);
 //The main difference is that this code demonstrates the concept of variable shadowing. In JavaScript, when an argument is passed to a function, a local variable with the same name as the corresponding parameter is created within the inner scope of the function. Therefore, there are two variables named a that exist in this program: one in the global scope and the other in the function's local scope. Therefore, the reassignment of the local variable a within the function has no effect on the global variable a.
 
 
-// 8
+// 8 Arguments Part 3
 
-// To do later...
+// What will the following code log to the console and why?
+
+let a = [1, 2, 3];
+
+function myValue(b) {
+  b[2] += 7;
+}
+
+myValue(a);
+console.log(a); // [1, 2, 10]
+
+// The code logs [1, 2, 10] to the console. This is because arrays and objects, in JavaScript, are mutable. When the value assigned to a, an array, is passed to the function on line 7, a local variable b is initialized (on line 3) to the same array that a is assigned. Therefore, when the program executes the statement b[2] += 7 on line 4, it is actually being executed on the array assigned to a. Consequently, when the value of a is logged on line 8, we can see the result of this mutation: [1, 2, 10].
 
 // 9
 
