@@ -250,3 +250,32 @@ const FOO = 'bar';
 console.log(FOO);
 
 // For much the same reason as the previous exercise, this program doesn't raise an error, and it logs bar on line 6. One key difference, though, is that we are using const instead of let, which may have led you to believe an error would occur on line 3. However, since the two const variables are separate entities -- that is, the declaration on line 3 declares a completely new constant -- no error occurs.
+
+// Input/Output Exercises
+
+// 1
+
+touch greeter.js
+let rlSync = require('readline-sync');
+
+let name = rlSync.question("What's your name? ");
+console.log(`Hello, ${name}!`)
+
+// OR for browser
+
+let name = prompt("What's your name? ");
+console.log(`Hello, ${name}!`);
+
+// 2
+let firstName = prompt("What is your first name?" );
+let lastName = prompt("What's your last name? ");
+console.log(`Hello, ${firstName} ${lastName}!`);
+
+// 3
+
+age.js
+let age = Number(prompt("How old are you? "));
+console.log(`In 10 years, you will be ${age + 10} years old.`)
+console.log(`In 20 years, you will be ${age + 20} years old.`)
+console.log(`In 30 years, you will be ${age + 30} years old.`)
+console.log(`In 40 years, you will be ${age + 40} years old.`)
