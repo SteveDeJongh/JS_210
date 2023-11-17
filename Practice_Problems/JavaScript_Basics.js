@@ -98,7 +98,7 @@ console.log(
   `${firstNumber} ** ${secondNumber} = ${Math.pow(firstNumber, secondNumber)}`
 );
 
-// 6 Counthing the number of Characters
+// 6 Counting the number of Characters
 
 // ex:
 Please enter a phrase: walk
