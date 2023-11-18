@@ -279,3 +279,212 @@ console.log(`In 10 years, you will be ${age + 10} years old.`)
 console.log(`In 20 years, you will be ${age + 20} years old.`)
 console.log(`In 30 years, you will be ${age + 30} years old.`)
 console.log(`In 40 years, you will be ${age + 40} years old.`)
+
+// Functions Exercises
+
+// 1
+
+// This code outputs 1
+
+// The foo() method call does not affect the output as within the `foo` method declaration on `lines 2-4`, we declare a new `bar` variable that is initialized to the value 2.
+
+// 2 
+
+greeter.js
+
+function promptForName(firstOrLast) {
+  return prompt(`What is your ${firstOrLast} name?`)
+}
+let firstName = promptForName('first');
+let lastName = promptForName('last');
+
+console.log(`Good Morning, ${firstName + ' ' + lastName}.`)
+console.log(`Good Afternoon, ${firstName + ' ' + lastName}.`)
+console.log(`Good Evening, ${firstName + ' ' + lastName}.`)
+
+// LS Solution
+
+function getName(prompt) {
+  let readlineSync = require('readline-sync');
+  let name = readlineSync.question(prompt);
+  return name;
+}
+
+let firstName = getName('What is your first name? ');
+let lastName = getName('What is your last name? ');
+console.log(`Hello, ${firstName} ${lastName}!`);
+
+// 3
+
+function multiply(n1, n2) {
+  return n1 * n2;
+}
+
+let firstNumber = Number(prompt('Entere the first number: '));
+let secondNumber = Number(prompt('Enter the second number: '));
+
+console.log(`${firstNumber} * ${secondNumber} = ${multiply(firstNumber, secondNumber)}`)
+
+// LS Solution
+
+function multiply(left, right) {
+  return left * right;
+}
+
+function getNumber(prompt) {
+  let readlineSync = require('readline-sync');
+  return parseFloat(readlineSync.question(prompt));
+}
+
+let left = getNumber('Enter the first number: ');
+let right = getNumber('Enter the second number: ');
+console.log(`${left} * ${right} = ${multiply(left, right)}`);
+
+// 4
+
+function scream(words) {
+  words = words + '!!!!';
+  return;
+  console.log(words);
+}
+
+scream('Yipeee');
+
+// This code does not log anything to the console as the function terminates due to the `return` on line 347 before the `console.log` call is made.
+
+// 5
+
+function scream(words) {
+  return words + '!!!!';
+}
+
+scream('Yipeee');
+
+// This code does not log anything to the console, but does now return a value of Yipeee!!!!.
+
+// 6
+
+// In the code shown below, identify the following items:
+
+// the function arguments: 2, 3, 4
+// the function body: `let result = num1 * num2 * num3;
+                  //  return result`
+// the function declaration: 
+              // function multiplyNumbers(num1, num2, num3) {
+              //   let result = num1 * num2 * num3;
+              //   return result;
+              // }
+// the function invocation
+              // multiplyNumbers(2,3,4);
+// the function name
+              // multiplyNumbers
+// the function parameters
+              // num1, num2, num3
+// the function return value
+              // the value represented by the variable `result`.
+// the names of all variables in this program
+              // multiplyNummbers, result, num1, num2, num3, product
+
+function multiplyNumbers(num1, num2, num3) {
+  let result = num1 * num2 * num3;
+  return result;
+}
+
+let product = multiplyNumbers(2, 3, 4);
+
+// The function name is multiplyNumbers.
+
+// The function arguments are the values 2, 3, and 4 between the parentheses on line 6. The function parameters are num1, num2, and num3 on line 1.
+
+// The function body consists of everything between the { on line 1 and the } on line 4. It doesn't matter whether you include or exclude the braces as part of your answer.
+
+// The function declaration is everything on lines 1-4. The function invocation is multiplyNumbers(2, 3, 4) on line 6.
+
+// The function's return value is determined by multiplying the arguments together. That value is initially stored in the local variable result in the function's body. It gets assigned to product after the function returns.
+
+// This code's complete list of variables includes multiplyNumbers, num1, num2, num3, result, and product. In particular, the function name and its parameters are all variables. In this case, multiplyNumbers is a global variable, but num1, num2, and num3 are local variables defined inside the function.
+
+// 7
+
+function foo(bar, qux) {
+  console.log(bar);
+  console.log(qux);
+}
+
+foo('Hello');
+
+// logs 'Hello' and 'undefined', when we fail to provide an explicit arugment in the invocation, the parameter is assigned the value of `undefined`.
+
+// 8
+
+function foo(bar, qux) {
+  console.log(bar);
+  console.log(qux);
+}
+
+foo(42, 3.1415, 2.718);
+
+// logs 42 and 3.1415, extra arguments are ignored.
+
+// 9
+
+// Identify all of the variables named on each line of the following code. You may assume that question is the name of a built-in function in JavaScript (it is not, so this code won't work as written).
+
+function multiply(left, right) { // multiply, left, right
+  let product = left * right; // product, left, right
+  return product; // product
+}
+
+function getNumber(prompt) { // getNumber, prompt
+  return parseFloat(question(prompt)); // parseFloat, question, prompt
+}
+
+let left = getNumber('Enter the first number: '); // left, getNumber
+let right = getNumber('Enter the second number: '); // right, getNumber
+console.log(`${left} * ${right} = ${multiply(left, right)}`); // console, left, right, multiply.
+
+// LS Solution
+
+// Line 1: multiply, left, right: The function name and the parameter names are all variable names.
+// Line 2: product, left, right
+// Line 3: product
+// Line 6: getNumber, prompt
+// Line 7: parseFloat, question, prompt. This one is a little tricky. parseFloat is an actual built-in function in JavaScript; we are pretending that question also is a built-in function. As such, we know that both parseFloat and question are variable names.
+// Line 10: left, getNumber
+// Line 11: right, getNumber
+// Line 12: console, left, right, multiply: console.log is a little tricky here. console is the variable name for the built-in Console object. In contrast, console.log is the name of a method in that object. As such, log is a property name, not a variable name.
+
+// 10 
+
+function multiply(left, right) { // Mulitply(global), left(local), right(local)
+  let product = left * right; // local: product, left, right
+  return product; // local: product
+}
+
+function getNumber(prompt) { // global: getNumber, local: prompt
+  return parseFloat(question(prompt)); // global: parsefloat, question, local: prompt;
+}
+
+let left = getNumber('Enter the first number: '); // global: left, getNumber
+let right = getNumber('Enter the second number: '); // global: right, getNumber
+console.log(`${left} * ${right} = ${multiply(left, right)}`); // global: console, left, right, multiply
+
+// Global Variables: multiply, getNumber, left, right, console, parseFloat, question.
+// Local Variables: left, right, product, prompt
+
+// Function names are global variables unless those functions are defined as an object property or nested inside another function. Thus, multiply, getNumber, console, parseFloat, and question are all global variables in this program. In addition, function parameters and variables declared inside a function are always local variables. Thus, left, right, product, and prompt are all local variables.
+
+// In the next exercise, we'll see why left and right are both global and local variables.
+
+// 11
+
+// No, the left and right on lines 1 and 2 are local parameter names for the `multiply` function. The `left` and `right` used on lines `10-12` are globally defined variables.
+
+// LS
+
+// They are not the same variables.
+
+// The left and right variables declared on lines 10 and 11 are a little tricky. First, though they have the same names as the parameters defined for the multiply function, they are not the same variables. (The function parameters shadow the variables on lines 10 and 11.) Furthermore, they are global variables even though they are only accessible on line 12 (technically, left is also accessible on line 11 but is not used). They are considered global because they are defined at the topmost level of the program.
+
+// The left and right parameters on line 1 are local variables since function parameters are always local to the function. Thus, line 2 refers to the local variables.
+
