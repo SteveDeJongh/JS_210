@@ -488,3 +488,187 @@ console.log(`${left} * ${right} = ${multiply(left, right)}`); // global: console
 
 // The left and right parameters on line 1 are local variables since function parameters are always local to the function. Thus, line 2 refers to the local variables.
 
+// Flow Control - Exercises
+
+// 1
+
+false || (true && false); // false
+true || (1 + 2); // true
+(1 + 2) || true; // 3
+true && (1 + 2); // 3
+false && (1 + 2); // false
+(1 + 2) && true; // true
+(32 * 4) >= 129; // false
+false !== !true; // false
+true === 4; // false
+false === (847 === '847'); // true
+false === (847 == '847'); // false
+(!true || (!(100 / 5) === 20) || ((328 / 4) === 82)) || false; // true
+
+// 2
+
+function evenOrOdd(num) {
+  if (num % 2 === 0) {
+    console.log('even');
+  } else {
+    console.log('odd');
+  }
+}
+
+evenOrOdd(2);
+evenOrOdd(3);
+
+// 3
+
+function evenOrOdd(num) {
+  if (Number.isInteger(num)) {
+    if (num % 2 === 0) {
+      console.log('even');
+    } else {
+      console.log('odd');
+    }
+  } else {
+    console.log('Error: input must be a valid integer.')
+  }
+}
+
+evenOrOdd(2);
+evenOrOdd(3);
+evenOrOdd('a');
+
+// LS Solution
+
+function evenOrOdd(number) {
+  if (!Number.isInteger(number)) {
+    console.log('Sorry, the value you passed is not an integer');
+    return;
+  }
+
+  if (number % 2 === 0) {
+    console.log('even');
+  } else {
+    console.log('odd');
+  }
+}
+
+// 4
+
+function barCodeScanner(serial) {
+  switch (serial) {
+    case '123':
+      console.log('Product1');
+    case '113':
+      console.log('Product2');
+    case '142':
+      console.log('Product3');
+    default:
+      console.log('Product not found!');
+  }
+}
+
+barCodeScanner('113'); // logs: Product2, product3, product not found!
+// This is because of the lack of `break` satatement in the switch statements case clauses.
+
+// 5
+
+// return foo() ? 'bar' : qux();
+
+// Refactored to be use an if statement.
+
+// if (foo()) {
+//   return 'bar';
+// } else {
+//   return qux();
+// }
+
+// 6
+
+function isArrayEmpty(arr) {
+  if (arr) {
+    console.log('Not Empty');
+  } else {
+    console.log('Empty');
+  }
+}
+
+isArrayEmpty([]); // 'Not Empty' // An empty array isn't a falsy value.
+
+// 7
+
+function capitalize(string) {
+  if (string.length > 10) {
+    return string.toUpperCase();
+  } else {
+    return string;
+  }
+}
+
+capitalize('hello world');
+capitalize('goodbye');
+
+// LS Solution using ternary operator.
+
+function capsLong(string) {
+  return ((string.length > 10) ? string.toUpperCase() : string);
+}
+
+console.log(capsLong("Sue Smith"));     // => Sue Smith
+console.log(capsLong("Sue Robertson")); // => SUE ROBERTSON
+console.log(capsLong("Joe Thomas"));    // => Joe Thomas
+console.log(capsLong("Joe Stevens"));   // => JOE STEVENS
+
+// 8
+
+function numberRange(num) {
+  if (num >= 0 && num <= 50 ) {
+    console.log(`${num} is between 0 and 50`);
+  } else if (num >= 51 && num <= 100) {
+    console.log(`${num} is between 51 and 100`);
+  } else if (num > 100) {
+    console.log('125 is greater than 100');
+  } else if (num < 0) {
+    console.log(`${num} is less than 0`);
+  }
+}
+
+numberRange(25);
+numberRange(75);
+numberRange(125);
+numberRange(-25);
+
+// LS Solution
+
+function numberRange(number) {
+  if (number < 0) {
+    console.log(`${number} is less than 0`);
+  } else if (number <= 50) {
+    console.log(`${number} is between 0 and 50`);
+  } else if (number <= 100) {
+    console.log(`${number} is between 51 and 100`);
+  } else {
+    console.log(`${number} is greater than 100`);
+  }
+}
+
+// 9
+
+console.log(false ?? null); // false
+console.log(true ?? (1 + 2)); // true
+console.log((1 + 2) ?? true); // 3
+console.log(null ?? false); // false
+console.log(undefined ?? (1 + 2)); // 3
+console.log((1 + 2) ?? null); // 3
+console.log(null ?? undefined); // undefined
+console.log(undefined ?? null); // null
+
+// 10
+
+function show(foo = undefined, bar = null) {
+  console.log(`foo is ${foo ?? 3}, bar is ${bar ?? 42}`);
+}
+
+show(5, 7); // foo is 5, bar is 7
+show(0, 0); // foo is 0, bar is 0
+show(4); // foo is 4, bar is 42
+show(); // foo is 3, bar is 42
+
