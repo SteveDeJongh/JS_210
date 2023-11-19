@@ -808,3 +808,192 @@ function factorial(num) {
 }
 
 console.log(factorial(4));
+
+// Arrays - Exercises
+
+// 1
+
+// array1 4
+// array2 5
+// array3 0
+// array4 3
+// array 5 101
+
+// 2
+
+let myArray = [1, 3, 6, 11, 4, 2,
+  4, 9, 17, 16, 0];
+
+myArray.forEach(function (num) {
+  if (num % 2 === 0) {
+    console.log(num);
+  }
+});
+
+// LS alt solution using a for loop
+
+for (let i = 0; i < myArray.length; i += 1) {
+  let value = myArray[i];
+  if (value % 2 === 0) {
+    console.log(value);
+  }
+}
+
+// 3
+
+let myArray = [
+  [1, 3, 6, 11],
+  [4, 2, 4],
+  [9, 17, 16, 0],
+];
+
+for (let i = 0; i < myArray.length; i += 1) {
+  myArray[i].forEach(function(num) {
+    if (num % 2 === 0) {
+      console.log(num);
+    }
+  })
+}
+
+// Alt LS Solutions
+
+for (let i = 0; i < myArray.length; i += 1) {
+  for (let j = 0; j < myArray[i].length; j += 1) {
+    let value = myArray[i][j];
+    if (value % 2 === 0) {
+      console.log(value);
+    }
+  }
+}
+
+// 4
+
+let myArray = [
+  1, 3, 6, 11,
+  4, 2, 4, 9,
+  17, 16, 0,
+];
+
+let resArr = myArray.map(function(num) {
+  if (num % 2 === 0) {
+    return 'even';
+  } else {
+    return 'odd';
+  }
+});
+
+// 5
+
+function findIntegers(arr) {
+  return arr.filter(el => Number.isInteger(el));
+}
+
+let things = [1, 'a', '1', 3, NaN, 3.1415, -4, null, false];
+let integers = findIntegers(things);
+console.log(integers); // => [1, 3, -4]
+ 
+// LS Solution
+
+function findIntegers(array) {
+  return array.filter(function(element) {
+    return Number.isInteger(element);
+  });
+}
+
+// 6
+
+function oddLengths(arr) {
+  return arr.map(el => el.length).filter(el => (el % 2 !== 0));
+}
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr)); // => [1, 5, 3]
+
+// LS Solution
+
+function oddLengths(strings) {
+  let lengths = strings.map((letters) => letters.length);
+  let oddLengths = lengths.filter((number) => number % 2 === 1);
+  return oddLengths;
+}
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr));
+
+// 7
+
+function sumOfSquares(array) {
+  return array.reduce((acc, curr) => acc  + (curr * curr), 0)
+}
+
+let array = [3, 5, 7];
+console.log(sumOfSquares(array)); // => 83
+
+// LS Solution
+
+function sumOfSquares(numbers) {
+  return numbers.reduce((accumulator, number) => {
+    return accumulator + number * number;
+  }, 0);
+}
+
+let array = [3, 5, 7];
+console.log(sumOfSquares(array)); // => 83
+
+// 8 
+
+function oddLengths(arr) {
+  return arr.reduce((acc, curr) => {
+    if (curr.length % 2 !== 0) {
+      acc.push(curr.length);
+    }
+    return acc;
+  }, [])
+}
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr)); // => [1, 5, 3]
+
+// LS Solution, same thing, just different wording.
+
+function oddLengths(strings) {
+  return strings.reduce((filteredNumbersArray, letters) => {
+    let length = letters.length;
+    if (length % 2 === 1) {
+      filteredNumbersArray.push(length);
+    }
+
+    return filteredNumbersArray;
+  }, []);
+}
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr));
+
+// 9
+
+let numbers1 = [1, 3, 5, 7, 9, 11];
+let numbers2 = [];
+let numbers3 = [2, 4, 6, 8];
+
+numbers1.includes(3);
+numbers2.includes(3);
+numbers3.includes(3);
+
+// OR
+
+function checkIfThree(arr) {
+  return arr.indexOf(3) >= 0;
+}
+
+// 10
+
+let arr = [
+  ["hello", "world"],
+  ["example", "mem", null, 6, 88],
+  [4, 8, 12]
+];
+
+arr[1][3] = 606;
+
+// 
