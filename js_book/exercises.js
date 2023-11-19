@@ -672,3 +672,139 @@ show(0, 0); // foo is 0, bar is 0
 show(4); // foo is 4, bar is 42
 show(); // foo is 3, bar is 42
 
+// Loops and Iterating - Exercises
+
+// 1
+
+let age = 20;
+
+for (let adder = 10; adder <= 40; adder += 10) {
+  console.log(`In ${adder} years, you will be ${age + adder} years old.`);
+}
+
+// LS Solution
+
+let readlineSync = require('readline-sync');
+let age = readlineSync.question('How old are you? ');
+age = parseInt(age);
+console.log(`You are ${age} years old.`);
+for (let future = 10; future <= 40; future += 10) {
+  console.log(`In ${future} years, you will be ${age + future} years old.`);
+}
+
+// 2
+
+function factorial(num) {
+  let result = 1;
+  for (i = 1; i <= num; i += 1) {
+    result *= i;
+  }
+
+  return result;
+}
+
+console.log(factorial(1));     // => 1
+console.log(factorial(2));     // => 2
+console.log(factorial(3));     // => 6
+console.log(factorial(4));     // => 24
+console.log(factorial(5));     // => 120
+console.log(factorial(6));     // => 720
+console.log(factorial(7));     // => 5040
+console.log(factorial(8));     // => 40320
+
+// LS Solution, working backwards
+
+function factorial(number) {
+  let result = 1;
+  for (let counter = number; counter > 0; counter -= 1) {
+    result *= counter;
+  }
+
+  return result;
+}
+
+console.log(factorial(1));     // => 1
+console.log(factorial(2));     // => 2
+console.log(factorial(3));     // => 6
+console.log(factorial(4));     // => 24
+console.log(factorial(5));     // => 120
+console.log(factorial(6));     // => 720
+console.log(factorial(7));     // => 5040
+console.log(factorial(8));     // => 40320
+
+// 3
+
+let counter = 0;
+
+while (counter = 1) { // reasignment that returns a truthy value, not testing for equality.
+  console.log(counter);
+  counter += 1;
+
+  if (counter > 2) {
+    break;
+  }
+}
+
+// 4
+
+for (let i = 0; i < 5;) {
+  console.log(i += 1);
+}
+
+// The code doesn't produce an error since all 3 components of the for loop are optional. In this code, we omit the "next value" component; however, this isn't a problem here since we increment the loop variable on line 2.
+
+// 5
+
+function randomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+let tries = 0;
+let result = randomNumberBetween(1, 6);
+tries += 1;
+
+while (result <= 2) {
+  result = randomNumberBetween(1, 6);
+  tries += 1;
+}
+
+console.log('It took ' + String(tries) + ' tries to get a number greater than 2');
+
+// Refactored to not call `randomnNumberBetween` in 2 different locations.
+
+function randomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+let tries = 0;
+let result;
+
+do {
+  result = randomNumberBetween(1, 6);
+  tries += 1;
+} while (result <= 2)
+
+console.log('It took ' + String(tries) + ' tries to get a number greater than 2');
+
+// 6
+
+function factorial(num) {
+  let result = 1;
+  for (i = 1; i <= num; i += 1) {
+    result *= i;
+  }
+
+  return result;
+}
+
+// Refactored to use recursion.
+
+function factorial(num) {
+  if (num === 1) {
+    return 1;
+  }
+
+  return num * factorial(num - 1);
+}
+
+console.log(factorial(4));
