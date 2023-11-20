@@ -996,4 +996,311 @@ let arr = [
 
 arr[1][3] = 606;
 
-// 
+// Objects - Exercises
+
+// 1
+
+let person = {
+  name:       'Bob',
+  occupation: 'web developer',
+  hobbies:    'painting',
+};
+
+person.name
+
+// OR
+
+person['name']
+
+// 2 
+
+// Which of the following values are valid keys for an object?
+
+// 1 // yes
+// '1' // yes
+// undefined // yes
+// 'hello world' // yes
+// true // yes
+// 'true' // yes
+
+// All of these values or valid keys, however JavaScript will coerce the non-string key values to a string. Therfor `1` and `'1'` will be the same key.
+
+// 3
+
+let myArray = {
+  '0': 1,
+  '1': 2,
+  '2': 3,
+  'length': 3,
+};
+
+for (let i = 0; i < myArray.length; i += 1) {
+  console.log(myArray[i]);
+}
+
+// 4
+
+let obj = {
+  b: 2,
+  a: 1,
+  c: 3,
+};
+
+let arr = Object.keys(obj);
+
+let capArr = arr.map((el) => el.toUpperCase());
+
+// 5
+
+let myProtoObj = {
+  foo: 1,
+  bar: 2,
+};
+
+let myObj = Object.create(myProtoObj);
+
+console.log(myObj);
+
+// 6
+
+// Which of the following values are primitive values? Which are objects? Which are neither?
+
+// "foo" // primitive
+// 3.1415 // primitive
+// [ 'a', 'b', 'c' ] // Object
+// false // Primitve
+// foo // neither, foo is an indentifier. Identifiers are used to name things that have values, such as variables or functions.
+// function bar() { return "bar"; } // Object, functions are objects.
+// undefined // primitive
+// { a: 1, b: 2 } // Object
+
+// 7
+
+let myProtoObj = {
+  foo: 1,
+  bar: 2,
+};
+
+let myObj = Object.create(myProtoObj);
+myObj.qux = 3;
+console.log(myObj);
+
+let objKeys = Object.keys(myObj); // returns just the keys of the object itself and no the prototype keys.
+objKeys.forEach(function(key) {
+  console.log(key);
+});
+
+// logs: qux
+
+for (let key in myObj) { // for..in loop iterates over both the objects keys and it's prototypes keys.
+  console.log(key);
+}
+
+// logs: qux, foo, bar
+
+// 8
+
+function copyObj(obj, arr) {
+  let resObj = {};
+
+  if (arr) {
+    for (let i = 0; i < arr.length; i += 1) {
+      resObj[arr[i]] = obj[arr[i]];
+    }
+
+    return resObj;
+  } else {
+    return Object.assign(resObj, obj);
+  }
+}
+
+// LS Solution
+
+function copyObj(sourceObject, keys) {
+  let destinationObject = {};
+
+  if (keys) {
+    keys.forEach(function(key) {
+      destinationObject[key] = sourceObject[key];
+    });
+
+    return destinationObject;
+  } else {
+    return Object.assign(destinationObject, sourceObject);
+  }
+}
+
+let objToCopy = {
+  foo: 1,
+  bar: 2,
+  qux: 3,
+};
+
+let newObj = copyObj(objToCopy);
+console.log(newObj);        // => { foo: 1, bar: 2, qux: 3 }
+
+let newObj2 = copyObj(objToCopy, [ 'foo', 'qux' ]);
+console.log(newObj2);       // => { foo: 1, qux: 3 }
+
+let newObj3 = copyObj(objToCopy, [ 'bar' ]);
+console.log(newObj3);       // => { bar: 2 }
+
+// 9
+
+let foo = {
+  a: 'hello',
+  b: 'world',
+};
+
+let qux = 'hello';
+
+function bar(argument1, argument2) {
+  argument1.a = 'hi';
+  argument2 = 'hi';
+}
+
+bar(foo, qux);
+
+console.log(foo.a); // 'hi'
+console.log(qux); // 'hello'
+
+// This program logs 'hi' and 'hello' to the console. This is because objects are mutable and primitives are immutable.
+
+// When bar is invoked on line 13, argument1 is initialized to an object and argument2 is initialized to a string value.
+
+// Line 9 reassigns an object property (argument1.a), which will mutate the object. Line 10 reassigns a variable, which completely replaces the value of the local argument2 variable.
+
+// Thus, line 9 mutates foo by reassigning its a property to a new value ('hi'), and line 10's variable reassignment doesn't effect any variables outside of bar.
+
+// Because foo was mutated, the access to foo.a on line 15 logs 'hi'. On the other hand, the variable reassignment on line 10 does not mutate qux's value, so line 16 logs hello - the original value of the qux variable.
+
+// SD Note, variables as pointer! argument2 points to teh value that qux does, and therefor the reasignment changes the string value, and not the variable.
+
+// 10
+
+
+[1, 2, ["a", ["b", false]], null, {}]
+
+// Primitives:
+1, 2, 'a', 'b', false, null
+
+// Objects:
+[1, 2, ["a", ["b", false]], null, {}]
+["a", ["b", false]]
+["b", false]
+{}
+
+// 11
+
+let obj = {
+  foo: { a: "hello", b: "world" },
+  bar: ["example", "mem", null, { xyz: 6 }, 88],
+  qux: [4, 8, 12]
+};
+
+obj.bar[3].xyz = 606;
+
+// 12
+
+function foo(bar) {
+  console.log(bar, bar, bar);
+}
+
+let bar = foo;
+
+foo("hello"); // should print "hello hello hello"
+bar("hi");    // should print "hi hi hi"
+
+// 13
+
+function foo(bar) {
+  console.log(bar());
+}
+
+foo(function() { return 'Welcome'; });    // Should print 'Welcome'
+foo(function() { return 3.1415; });    // Should print 3.1415
+foo(function() {[1,2,3]; });    // Should print [1, 2, 3]
+
+// 14
+
+function hello(greeting, name) {
+  return greeting + ' ' + name;
+}
+
+function xyzzy() {
+  return { a: 1, b: 2, c: [3, 4, 5], d: {} };
+}
+
+const howdy = hello('Hi', 'Grace');
+let foo = xyzzy();
+
+// Variables
+hello, greeting, name, xyzzy, howdy, foo
+
+// Property names
+a, b, c, d
+// Array indexes are also property names, so 0, 1, 2.
+
+// Primitive Values
+' ', 1, 2, 3, 4, 5, a, b, c, d, 'hi', 'grace' // Array indexes are also property names, so 0, 1, 2
+
+// Objects
+
+function hello(greeting, name) {
+  return greeting + ' ' + name;
+}
+function xyzzy() {
+  return { a: 1, b: 2, c: [3, 4, 5], d: {} };
+}
+
+{ a: 1, b: 2, c: [3, 4, 5], d: {} }
+[3, 4, 5]
+{}
+
+// 15
+
+function bar(arg1, arg2) {
+  let foo = 'Hello';
+  const qux = {
+    abc: [1, 2, 3, [4, 5, 6]],
+    def: null,
+    ghi: NaN,
+    jkl: foo,
+    mno: arg1,
+    pqr: arg2,
+  };
+
+  return qux;
+}
+
+let result = bar('Victor', 'Antonina');
+
+// Variables
+bar, arg1, arg2, foo, qux, result
+
+// Property names
+abc, def, ghi, jkl, mno, pqr, 0, 1, 2, 3
+
+// Primitive Values
+'hello', 
+1,2,3,4,5,6
+abc, def, hgi, jkl, mno, pqr
+null, NaN
+0, 1, 2, 3
+0, 1, 2
+'victor', 'antonina'
+
+// Objects
+bar
+const qux = {
+  abc: [1, 2, 3, [4, 5, 6]],
+  def: null,
+  ghi: NaN,
+  jkl: foo,
+  mno: arg1,
+  pqr: arg2,
+};
+[1, 2, 3, [4, 5, 6]]
+[4, 5, 6]
+
+// More Stuff - Exercises
