@@ -1304,3 +1304,151 @@ const qux = {
 [4, 5, 6]
 
 // More Stuff - Exercises
+
+// 1 
+
+let array1 = [1, 2, 3];
+let array2 = array1;
+array1[1] = 4;
+console.log(array2); // Logs: [1,4,3]. This ie because array1 and array2 both stores pointers to the same array object. Then, on line 1312, we are reassigning an element of the array at index 1, which both variables still point to. The reassignment on line 1312 does not affect the values stored in array1 or array2 as they both store pointers to the array object.
+
+// 2
+
+// $ node exercise2.js
+// /Users/wolfy/tmp/exercise2.js:4
+//   console.log(greeting);
+//               ^
+
+// ReferenceError: greeting is not defined
+//     at hello (/Users/wolfy/tmp/exercise2.js:4:15)
+//     at Object.<anonymous> (/Users/wolfy/tmp/exercise2.js:13:1)
+//     at Module._compile (internal/modules/cjs/loader.js:721:30)
+//     at Object.Module._extensions..js (internal/modules/cjs/loader.js:732:10)
+//     at Module.load (internal/modules/cjs/loader.js:620:32)
+//     at tryModuleLoad (internal/modules/cjs/loader.js:560:12)
+//     at Function.Module._load (internal/modules/cjs/loader.js:552:3)
+//     at Function.Module.runMain (internal/modules/cjs/loader.js:774:12)
+//     at executeUserCode (internal/bootstrap/node.js:342:17)
+//     at startExecution (internal/bootstrap/node.js:276:5)
+
+// This error message tells us that the variable `greeting` is not defined within our code. The stack trace tells us that the error occured on line 4 position 15 of the `exercise2.js` file along with that the error occured in the `hello` funciton, with line `1324` telling us that the `hello` fucntion was called on line 13 within the program.
+
+// 3
+
+console.log(Math.sqrt(37));
+
+// 4
+
+console.log(Math.max(1, 6, 3, 2));      // => 6
+console.log(Math.max(-1, -6, -3, -2));  // => -1
+console.log(Math.max(2, 2));            // => 2
+
+// 5 
+
+function doSomething(string) {
+  return string.split(' ').reverse().map((value) => value.length);
+}
+
+// This code will take a string as an input, split the string on a space, reverse that array returned by split, then iterates over the array, returning a new array of the elements length.
+
+// 6
+
+let words = [
+  'laboratory',
+  'experiment',
+  'flab',
+  'Pans Labyrinth',
+  'elaborate',
+  'polar bear',
+];
+
+function allMatches(arr, match) {
+  let resArr = [];
+  arr.forEach(function(word) {
+    if (match.test(word)) {
+      resArr.push(word);
+    }
+  });
+  return resArr;
+}
+
+console.log(allMatches(words, /lab/)); // => ['laboratory', 'flab', 'elaborate']
+
+// Alt LS Solution, using a for loop, or filter.
+
+function allMatches(words, pattern) {
+  let matches = [];
+  for (let index = 0; index < words.length; index += 1) {
+    if (pattern.test(words[index])) {
+      matches.push(words[index]);
+    }
+  }
+
+  return matches;
+}
+
+function allMatches(words, pattern) {
+  return words.filter((word) => pattern.test(word));
+}
+
+// 7
+
+// Exception handling allows our code to try and run some code, and if an error is raised by that code handle the reaised exception without it halting the execution of the rest of the program.
+
+// This done using a `try..catch` statement.
+
+// Exception handling is a process that deals with errors in a manageable and predictable manner. It uses the try/catch statement to catch exceptions that the code in the try block raises, and lets the programmer deal with the problem in a way that makes sense and perhaps prevents a catastrophic failure or nasty bug.
+
+// 8 
+
+function isNotANumber(num) {
+  return value !== value;
+}
+
+// This works as `NaN` is the only JS value that is not `===` to itself.
+
+// 9
+
+function determineZero(num) {
+  if (5 / num === -Infinity) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+determineZero(0);
+determineZero(-0);
+
+// LS solution, way more concise
+
+function isNegativeZero(value) {
+  return 1 / value === -Infinity;
+}
+
+// LS Solution that shows we only care about 0 values.
+
+function isNegativeZero(value) {
+  return (value === 0) && (1 / value === -Infinity);
+}
+
+// 10
+
+// Consider this code:
+
+> let x = "5"
+> x = x + 1
+= "51"
+
+// Now, consider this code:
+
+> let y = "5"
+> y++
+// What gets returned by y++ in the second snippet, and why?
+
+// Solution
+// The return value is the numeric value 5.
+
+// If you apply ++ to a string, JavaScript coerces it into a number. In this case, "5" gets coerced to the number 5. After coercion, it then increments the value to 6. However, the return value is 5 since the post-increment operator (y++) returns the original value of y, not the incremented value.
+
+// This shows that x++ is not the same thing as x = x + 1.
