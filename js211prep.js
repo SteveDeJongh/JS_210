@@ -240,3 +240,28 @@ function forSolution(text) {
 
 forSolution(bonusObj1.text);
 forSolution(bonusObj2.text);
+
+let arrayTest = [1,2,3,4,'a','b','c'];
+
+let result = arrayTest.filter(el => el > 3 || el > 'b'); // [4, 'c']
+
+let greeting = 'Hello';
+
+while (true) {
+  greeting = 'Hi';
+  break;
+}
+
+console.log(greeting);
+
+// This code outputs `Hi` rather than hello as the `greeting` variable first declared and assigned `Hello` on `line 1` is reassigned within the `while` block on `lines 3-6`. This reasignment takes place as the condition given to the `while` block evaluates to true (true === true), and the `greeting = 'hi'` variable reasignment occurs to outer scope `greeting` variable from `line 1` as it is in scope. After the reasignment on `line 4`, we then encounter a `break` statement which ends the exeuction of the `while` loop. We then use `console.log` to print the value of `greeting` to the console, which is now `Hi`.
+
+let a = "Hello";
+
+if (a) {
+  console.log("Hello is truthy");
+} else {
+  console.log("Hello is falsy");
+}
+
+// On `line 1` we declare a variable `a` and assign it the value `Hello`. We then write an `if` statement on `lines 3-7`. On `line 3`, the condition for the `if` branch of the statement is `a`. As `a` represents the value `Hello`, which is a truthy value`, this branch is executed. We then call `console.log` passing in the string 'Hello is truthy' which gets ouptut to the console. The rest of the if..else statement does not execute and the program ends after `line 7`.
