@@ -131,3 +131,112 @@ function extractStr(strings) {
 }
 
 extractStr('abcd bcd aa'); //[abcd, aa]
+
+function extractSubStr(string, match) {
+  let result = [];
+
+  for (let i = 0; i < string.length; i += 1) {
+    if (string.substring(i, i + match.length) === match) {
+      result.push(match);
+    }
+  }
+  return result;
+}
+
+extractSubStr('abcdefabcdefabcdef abcdefg', 'abc'); //['abc', 'abc', 'abc', 'abc'];
+
+function removeEl(arr, el) {
+  let index = arr.indexOf(el);
+
+  arr.splice(index, 1);
+
+  return arr;
+}
+
+let arr = [1,2,3];
+let arr3 = removeEl(arr, 2); //[1, 3]
+arr === arr3 //true
+
+function reverseIt(string) {
+  return string.split('').reverse().join('');
+}
+
+reverseIt('hello');
+
+function transformIt(arr) {
+  let result = [];
+
+  arr.forEach(function(el) {
+    for (let i = 0; i < el.length; i += 1) {
+      result.push(el[i]);
+    }
+  });
+  return result;
+}
+
+transformIt([[1], [2], [3]]); // [1,2,3]
+
+function findIndex(string, match) {
+  for (let i = 0; i < string.length; i += 1) {
+    if (string[i] === match) {
+      return i;
+    }
+  }
+  return false;
+}
+
+findIndex('Aabcdefgh ab A', 'a'); //1
+findIndex('bcdefgBA', 'a'); //false
+
+
+/** Write a function which accomplishes what the string requests
+ *   Your function should use the mechanism specifed (for, while, forEach, etc)
+ *   Use the function name specified
+ *   Log the result to the console
+ */
+const obj = { text: "Remove occurances of the letter e after the word 'letter' in this sentence" }
+Object.freeze(obj);
+
+function forSolution(text) {
+  let endOfLetter = text.indexOf('letter') + 'letter'.length;
+
+  let answer = text.slice(0, endOfLetter);
+
+  for (let i = endOfLetter; i < text.length; i += 1) {
+    if (text[i] !== 'e') {
+      answer += text[i];
+    }
+  }
+
+  return answer;
+}
+
+forSolution(obj.text);
+
+/**
+ * BONUS: 
+ * A single function should satisfy the strings defined 'obj' and the bonus objects below
+ * The function should only take a single argument of type object
+ * The function should be able to accomidate any word between the single quotes
+ */
+const bonusObj1 = { text: "Remove occurances of the letter e after 'the' in this sentence" }
+const bonusObj2 = { text: "The letter e should not appear after the word 'not' in this sentence" }
+Object.freeze(bonusObj1);
+Object.freeze(bonusObj2);
+
+function forSolution(text) {
+  let endOfLetter = text.lastIndexOf("'") + 1;
+
+  let answer = text.slice(0, endOfLetter);
+
+  for (let i = endOfLetter; i < text.length; i += 1) {
+    if (text[i] !== 'e') {
+      answer += text[i];
+    }
+  }
+
+  return answer;
+}
+
+forSolution(bonusObj1.text);
+forSolution(bonusObj2.text);
