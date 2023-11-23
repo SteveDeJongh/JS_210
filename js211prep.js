@@ -431,3 +431,69 @@ function hello() {
 }
 
 // This will raise an error, as the `hello` function is never called, and therfor the `a` global variable is never declared.
+
+//
+
+function say() {
+  if (false) {
+    var a = 'hello from inside a block';
+  }
+
+  console.log(a);
+}
+
+say();
+
+// This code will log `undefined`.
+
+// This is because `var` variables are function scoped, and therefor even though the code in the `if` statement never runs, the varaible `a` is still hoisted to the top of the function and given a `undefiend` value.
+
+//
+
+function say() {
+  if (false) {
+    let a = 'hello from inside a block';
+  }
+
+  console.log(a);
+}
+
+say();
+
+// This code will raise a reference error, as `let` variables are block scoped. This means that even if the `if` block did run (it doesn't currently), the variable `a` would still not be accessible to teh `console.log(a)` call in the `say()` function scope.
+
+// 
+
+function hello() {
+  a = 'hello';
+  console.log(a);
+
+  if (false) {
+    var a = 'hello again';
+  }
+}
+
+hello();
+console.log(a);
+
+// This will output `hello`, and then raise an error.
+
+// This is due to the `var a` declaration within the `if` statement being hoisted ot the top of the function `hello`. This results in the `line 2` `a = 'hello'` being reasignment, and not a new variable declaration creating a global variable, as a function scoped variable `a` has already been declared. This `a` variable is then accessible to the `console.log(a)` call on `line 3`, but not the `function.log(a)` call on `line 11` in the outer global scope.
+
+//
+
+function hello() {
+  a = 'hello';
+  console.log(a);
+
+  if (false) {
+    let a = 'hello again';
+  }
+}
+
+hello();
+console.log(a);
+
+// This code will ouptut `hello` twice.
+
+// As the `let a = 'hello again'` variable delcaration is only hoisted to the top of the block, and not the function, the `a = 'hello'` variable delcaration on `line 2` actually creates a global variable. This variable is accessible in the `hello` function for the `console.log(a)` call on `line 3`, and in the global scope `console.log(a)` call on `line 11`, as it occurs AFTER the `hello` function has been invoked.
