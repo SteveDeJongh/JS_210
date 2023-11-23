@@ -265,3 +265,169 @@ if (a) {
 }
 
 // On `line 1` we declare a variable `a` and assign it the value `Hello`. We then write an `if` statement on `lines 3-7`. On `line 3`, the condition for the `if` branch of the statement is `a`. As `a` represents the value `Hello`, which is a truthy value`, this branch is executed. We then call `console.log` passing in the string 'Hello is truthy' which gets ouptut to the console. The rest of the if..else statement does not execute and the program ends after `line 7`.
+
+// a function definition starts with `function` a name for the function, a list of optional comma separated paramters within parentheses, and then the body of the function between `{...}`. When we define a function, we also declare a variable of the functions name.
+
+function functionName(optionalparamter1, optionalparamter2, ...) {
+  // function body
+}
+
+// A function invokation is when we call the funciton. We do so by appending `()` to the name of the function.
+
+functioncall();
+
+// Within the parentheses, we can pass in a value as an argument to be assigned to a function parameter as defined within the function definition. The passed in value will be assigned to the paramter name and used during method invocation.
+
+// A function declaration starts with the `function` word and defineds a function with a name.
+
+// A function expression uses the fact that in JavaScript functions are first class functions. This means that functions are just objects that can be passed around and assigned to variables just as anything else. A function expressions returns a function object, and is most often assigned to a variable.
+
+let functionExpression = function () {
+  // body of func...
+}
+
+(function () {
+  // function body....
+}) // is also a function expression.
+
+// return function sayhello() {
+  // function body.
+} // also a function expression as we're returning it.
+
+// Example of partial function application.
+
+function prepender(greeting, text) {
+  console.log(`${greeting} ${text}`);
+}
+
+function makePrepender(greeting) {
+  return function(text) {
+    return prepender(greeting, text);
+  }
+}
+
+let prep = makePrepender('Sup!');
+
+prep('my dude!');
+
+//
+
+let a = 'outer';
+
+function testScope() {
+  let a = 'inner';
+  console.log(a);
+}
+
+console.log(a); // outer
+testScope(); // inner
+console.log(a); // outer
+
+// The code ouputs `outer` on `line 8` as the `console.log(a)` call references the globally scoped variable `a` declared on `line 1`. The `let a` variable delcaration on `line 4` within the `testScope` function creates a new variable within the functions scope, which shadows the outer scope variable `a`. This results in the `console.log(a)` call within the `testScope` function to use this function scoped `a` variable, but the variable assignment has no affect on the outer scoped `a` variable from line 1. This means that the last `console.log(a)` call on `line 10`, after the `testScope()` function invocation 1 line previous, will also log `outer`.
+
+//
+
+let a = 'outer';
+
+function testScope() {
+  a = 'inner';
+  console.log(a);
+}
+
+console.log(a);
+testScope();
+console.log(a);
+
+// The first `console.log(a)` call on line 8 will return `outer`, as it references the variables `a`'s value declared and assigned on `line 1`. We then invoke the `testScope` function on `line 9`. Within this function definition, we re-assign the value `inner` to the varaible `a`. The variable `a` is in scope as all outer scoped variables are accessible in an inner scope. This results in the `console.log(a)` call on `line 5` to output `inner`. The last `console.log(a)` call on `line 10` references this new value for `a` and also outputs `inner`. 
+
+// 
+
+let basket = 'empty';
+
+function goShopping() {
+  function shop1() {
+    basket = 'tv';
+  }
+
+  console.log(basket);
+
+  let shop2 = function() {
+    basket = 'computer';
+  };
+
+  const shop3 = () => {
+    let basket = 'play station';
+    console.log(basket);
+  };
+
+  shop1();
+  shop2();
+  shop3();
+
+  console.log(basket);
+}
+
+goShopping();
+
+// empty
+// play station
+// computer
+
+// We first declare a globally scoped variable `basket` and assign it the value `empty` on `line 1`. We then have the function defintion for `goShopping` on `lines 3 to 24`. On `line 26` we invoked the `goShopping` method.
+
+// The `goShopping` method definition includes 3 other function defintions for `shop1`, `shop2`, and `shop3`, but the first thing that happens in runtime is that we call `console.log(basket)` on `line 8`. At this time, `basket` still references the original outer scoped value of `empty`, and is what's output.
+
+// The next thing to happen is we invoke `shop1` on `line 19`. Within this function, we re-assign the `basket` variable to the string `tv`. We then move onto the next function call `shop2` on `line 20`. Within `shop2`s function defintion, we once again reassign the value of `basket`, this time to `computer`.
+
+// We then reach teh `shop3` function call on `line 21`. Within this function definition, we decalre a new function scoped variable `basket` and assign it the value of `play station`. This assignment has no affect on the outer (global) scoped `basket`. We then continue `shop3` method execution where we `console.log(basket)` which outputs the `shop3` function scoped variable `basket`'s value of `play station.
+
+// We then finally reach the last line within the method definiton calling `console.log(basket)` one more time, which references global scope variable `basket`'s value which is still the reassigned value of `computer` which occured after the `shop2` method invocation.
+
+//
+
+function hello() {
+  a = 'hi';
+}
+
+hello();
+console.log(a); // 'hi''
+
+// As `a` is decalred without `let`, `var`, `const`, or `function`, the variable is declared as a global variable. As it's a global variable, it's accessible to the `console.log(a)` call on `line 6` AFTER the `hello()` function has been invoked. Thus `console.log(a)` outputs `hi`.
+
+// 
+
+function hello() {
+  let a = 'hello';
+}
+
+hello();
+console.log(a);
+
+// This will raise a reference error, as `a` is defiend with the scope of `hello` and not accessible outside of the function.
+
+
+// 
+
+console.log(a);
+
+var a = 1;
+
+// This code will log `undefined` as hoisting only moves the function declaration to the top of the program, and not the assignment. By default, `var` variables after hoisting are initialized to `undefined`.
+
+// 
+
+console.log(a);
+
+let a = 1;
+
+// This will raise a reference error, as `let` variables are not accessible, even after hoisting and raises an error because the variable is `unset`. 
+
+// 
+
+console.log(a);
+
+function hello() {
+  a = 1;
+}
+
+// This will raise an error, as the `hello` function is never called, and therfor the `a` global variable is never declared.
